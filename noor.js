@@ -11,6 +11,8 @@ let sleepOn = false;
 let mealsOn = false;
 let ramadanOn = false;
 let prayersOn = false;
+let hoursOn = false;
+let heartbeatOn = false;
 
 const dayPicker = document.getElementById("dayPicker");
 const monthPicker = document.getElementById("monthPicker");
@@ -130,19 +132,25 @@ function toggleOption(type) {
     prayersOn = !prayersOn;
     document.getElementById("prayersBtn").classList.toggle("active", prayersOn);
   }
+  if (type === "hours") {
+    hoursOn = !hoursOn;
+    document.getElementById("hoursBtn").classList.toggle("active", hoursOn);
+  }
+  if (type === "heartbeat") {
+    heartbeatOn = !heartbeatOn;
+    document.getElementById("heartbeatBtn").classList.toggle("active", heartbeatOn);
+  }
 }
 
 function clearResults() {
-  document.getElementById("years").innerText = "";
-  document.getElementById("months").innerText = "";
-  document.getElementById("days").innerText = "";
-  document.getElementById("totalDays").innerText = "";
-  document.getElementById("hijriAge").innerText = "";
-  document.getElementById("waterResult").innerText = "";
-  document.getElementById("sleepResult").innerText = "";
-  document.getElementById("mealsResult").innerText = "";
-  document.getElementById("ramadanResult").innerText = "";
-  document.getElementById("prayersResult").innerText = "";
+  const ids = [
+    "years","months","days","totalDays","hijriAge","waterResult","sleepResult",
+    "mealsResult","ramadanResult","prayersResult","hoursResult","heartbeatResult"
+  ];
+  ids.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.innerText = "";
+  });
 }
 
 function calculateAge() {
@@ -211,6 +219,9 @@ function calculateAge() {
   const prayerDays = prayerYears * 354;
   const prayersCount = prayerDays * 5;
 
+  const livedHours = savedTotalDays * 24;
+  const heartbeatCount = savedTotalDays * 24 * 60 * 70;
+
   clearResults();
 
   if (ageOn) {
@@ -272,6 +283,20 @@ function calculateAge() {
         : prayersCount.toLocaleString("en-US") + " prayers";
   }
 
+  if (hoursOn) {
+    document.getElementById("hoursResult").innerText =
+      currentLang === "ar"
+        ? livedHours.toLocaleString("ar-EG") + " ساعة"
+        : livedHours.toLocaleString("en-US") + " hours";
+  }
+
+  if (heartbeatOn) {
+    document.getElementById("heartbeatResult").innerText =
+      currentLang === "ar"
+        ? heartbeatCount.toLocaleString("ar-EG") + " نبضة تقريبًا"
+        : heartbeatCount.toLocaleString("en-US") + " beats تقريبًا";
+  }
+
   result.style.display = "block";
   document.getElementById("backButton").classList.remove("hidden");
 }
@@ -285,6 +310,46 @@ function resetPage() {
 
 function toggleTheme() {
   document.body.classList.toggle("light-mode");
+}
+
+function getShareText() {
+  const parts = [];
+  const pushIfExists = (id, titleAr, titleEn) => {
+    const el = document.getElementById(id);
+    if (el && el.innerText.trim() !== "") {
+      parts.push((currentLang === "ar" ? titleAr : titleEn) + ": " + el.innerText.trim());
+    }
+  };
+
+  pushIfExists("years", "العمر الميلادي", "Gregorian age");
+  pushIfExists("hijriAge", "العمر الهجري", "Hijri age");
+  pushIfExists("totalDays", "مجموع الأيام", "Total days");
+  pushIfExists("ramadanResult", "عدد رمضاناتك", "Ramadans");
+  pushIfExists("prayersResult", "عدد الصلوات", "Prayers");
+  pushIfExists("hoursResult", "عدد الساعات", "Lived hours");
+  pushIfExists("heartbeatResult", "نبضات القلب", "Heart beats");
+
+  if (currentLang === "ar") {
+    return "هذه نتيجتي في موقع حساب العمر:\n\n" + parts.join("\n");
+  }
+  return "This is my result from the Age Calculator website:\n\n" + parts.join("\n");
+}
+
+function shareResult() {
+  const text = getShareText();
+  const url = window.location.href;
+
+  if (navigator.share) {
+    navigator.share({
+      title: currentLang === "ar" ? "نتيجة حساب العمر" : "Age Calculator Result",
+      text: text,
+      url: url
+    });
+  } else {
+    navigator.clipboard.writeText(text + "\n" + url).then(() => {
+      alert(currentLang === "ar" ? "تم نسخ النتيجة والرابط" : "Result and link copied");
+    });
+  }
 }
 
 function toggleLanguage() {
@@ -306,6 +371,8 @@ function toggleLanguage() {
     document.getElementById("labelMeals").innerText = "Meals count";
     document.getElementById("labelRamadan").innerText = "How many Ramadans";
     document.getElementById("labelPrayers").innerText = "Prayers since age 7";
+    if (document.getElementById("labelHours")) document.getElementById("labelHours").innerText = "Lived hours";
+    if (document.getElementById("labelHeartbeat")) document.getElementById("labelHeartbeat").innerText = "Heart beats";
     document.getElementById("calcBtn").innerText = "Calculate";
     document.getElementById("noteText").innerText = "Some results are approximate and not 100% exact.";
     document.getElementById("sheetTitle").innerText = "Choose Birth Date";
@@ -318,21 +385,16 @@ function toggleLanguage() {
     document.getElementById("contactLink").innerText = "Contact";
     document.getElementById("privacyLink").innerText = "Privacy Policy";
     document.getElementById("backButton").innerText = "← Change Birth Date";
+    if (document.getElementById("shareBtn")) document.getElementById("shareBtn").innerText = "Share Result";
 
-    const titles = document.querySelectorAll(".result-card-title");
-    const texts = [
-      "Gregorian Age",
-      "Hijri Age",
-      "Extra Months",
-      "Extra Days",
-      "Total Days",
-      "Water Amount",
-      "Sleep Hours",
-      "Meals Count",
-      "Ramadans",
-      "Prayers"
+    const titles = [
+      "Gregorian Age","Hijri Age","Extra Months","Extra Days","Total Days",
+      "Water Amount","Sleep Hours","Meals Count","Ramadans","Prayers",
+      "Lived Hours","Heart Beats"
     ];
-    titles.forEach((el, i) => { if (texts[i]) el.innerText = texts[i]; });
+    document.querySelectorAll(".result-card-title").forEach((el, i) => {
+      if (titles[i]) el.innerText = titles[i];
+    });
 
   } else {
     currentLang = "ar";
@@ -350,6 +412,8 @@ function toggleLanguage() {
     document.getElementById("labelMeals").innerText = "عدد الوجبات";
     document.getElementById("labelRamadan").innerText = "كم رمضان مر عليك";
     document.getElementById("labelPrayers").innerText = "كم صلاة صليت من عمر 7";
+    if (document.getElementById("labelHours")) document.getElementById("labelHours").innerText = "كم ساعة عشت";
+    if (document.getElementById("labelHeartbeat")) document.getElementById("labelHeartbeat").innerText = "كم نبضة قلب";
     document.getElementById("calcBtn").innerText = "احسب";
     document.getElementById("noteText").innerText = "بعض النتائج تقريبية وليست دقيقة 100٪.";
     document.getElementById("sheetTitle").innerText = "اختر الميلاد";
@@ -362,24 +426,19 @@ function toggleLanguage() {
     document.getElementById("contactLink").innerText = "اتصل بنا";
     document.getElementById("privacyLink").innerText = "سياسة الخصوصية";
     document.getElementById("backButton").innerText = "← تغيير تاريخ الميلاد";
+    if (document.getElementById("shareBtn")) document.getElementById("shareBtn").innerText = "مشاركة النتيجة";
 
-    const titles = document.querySelectorAll(".result-card-title");
-    const texts = [
-      "العمر الميلادي",
-      "العمر الهجري",
-      "الأشهر الإضافية",
-      "الأيام الإضافية",
-      "مجموع الأيام",
-      "كمية الماء",
-      "ساعات النوم",
-      "عدد الوجبات",
-      "عدد رمضاناتك",
-      "عدد الصلوات"
+    const titles = [
+      "العمر الميلادي","العمر الهجري","الأشهر الإضافية","الأيام الإضافية","مجموع الأيام",
+      "كمية الماء","ساعات النوم","عدد الوجبات","عدد رمضاناتك","عدد الصلوات",
+      "عدد الساعات","نبضات القلب"
     ];
-    titles.forEach((el, i) => { if (texts[i]) el.innerText = texts[i]; });
+    document.querySelectorAll(".result-card-title").forEach((el, i) => {
+      if (titles[i]) el.innerText = titles[i];
+    });
   }
 
   if (savedTotalDays > 0) {
     calculateAge();
   }
-    }
+      }
