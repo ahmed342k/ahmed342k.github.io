@@ -1,269 +1,832 @@
-<script>
-let selectedDay = "";
-let selectedMonth = "";
-let selectedYear = "";
-let currentLang = "ar";
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>حساب العمر | Age Calculator</title>
 
-let ageOn = true;
-let hijriOn = true;
-let waterOn = false;
-let sleepOn = false;
-let mealsOn = false;
-let ramadanOn = false;
-let prayersOn = false;
-let hoursOn = false;
-let heartbeatOn = false;
+  <meta name="google-adsense-account" content="ca-pub-9591145205593484">
+  <meta name="description" content="موقع لحساب العمر بدقة مع العمر الهجري وكم رمضان مر عليك وكم صلاة صليت ومعلومات إضافية.">
+  <meta name="keywords" content="حساب العمر, العمر الهجري, كم رمضان, كم صلاة صليت, age calculator">
+  <meta name="author" content="Age Calculator">
+  <meta name="robots" content="index, follow">
 
-const dayPicker = document.getElementById("dayPicker");
-const monthPicker = document.getElementById("monthPicker");
-const yearPicker = document.getElementById("yearPicker");
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9591145205593484" crossorigin="anonymous"></script>
 
-function openBirthSheet() {
-  document.getElementById("birthSheet").style.display = "flex";
-}
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0R40JW82MJ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-0R40JW82MJ');
+  </script>
 
-function closeBirthSheet() {
-  document.getElementById("birthSheet").style.display = "none";
-  clearDateError();
-}
+  <style>
+    *{
+      box-sizing:border-box;
+      -webkit-tap-highlight-color:transparent;
+    }
 
-function clearDateError() {
-  document.getElementById("dateError").innerText = "";
-  dayPicker.classList.remove("error-field");
-  monthPicker.classList.remove("error-field");
-  yearPicker.classList.remove("error-field");
-}
+    :root{
+      --bg1:#0b0d12;
+      --bg2:#12161d;
+      --text:#ffffff;
+      --sub:#cfd6df;
+      --card:rgba(255,255,255,0.05);
+      --btn:rgba(255,255,255,0.08);
+      --btnBorder:rgba(255,255,255,0.12);
+      --border:rgba(255,255,255,0.14);
+      --blue:#4f8cff;
+      --shadow:0 12px 28px rgba(0,0,0,0.22);
+      --danger:#ff8e8e;
+      --toggleOff:#666666;
+      --toggleOn:#4a7df0;
+      --toggleKnob:#ffffff;
+    }
 
-function markFieldError(field, message) {
-  clearDateError();
-  document.getElementById("dateError").innerText = message;
-  field.classList.add("error-field");
-}
+    body.light-mode{
+      --bg1:#f4f7fb;
+      --bg2:#e9eef5;
+      --text:#10151c;
+      --sub:#4e5968;
+      --card:rgba(255,255,255,0.72);
+      --btn:rgba(255,255,255,0.85);
+      --btnBorder:rgba(0,0,0,0.08);
+      --border:rgba(0,0,0,0.08);
+      --blue:#2f6fff;
+      --shadow:0 12px 24px rgba(0,0,0,0.10);
+      --danger:#d83f3f;
+      --toggleOff:#7a7a7a;
+      --toggleOn:#f5b301;
+      --toggleKnob:#ffffff;
+    }
 
-function confirmBirthDate() {
-  const errorBox = document.getElementById("dateError");
-  clearDateError();
+    body{
+      margin:0;
+      min-height:100vh;
+      font-family:Arial,sans-serif;
+      color:var(--text);
+      text-align:center;
+      background:
+        radial-gradient(circle at top right, rgba(79,140,255,0.16), transparent 30%),
+        radial-gradient(circle at top left, rgba(255,255,255,0.06), transparent 22%),
+        linear-gradient(180deg,var(--bg1),var(--bg2));
+      overflow-x:hidden;
+      transition:background .22s ease,color .22s ease;
+    }
 
-  selectedDay = dayPicker.value.trim();
-  selectedMonth = monthPicker.value.trim();
-  selectedYear = yearPicker.value.trim();
+    .container{
+      max-width:580px;
+      margin:auto;
+      padding:18px 14px 34px;
+    }
 
-  if (!selectedDay || !selectedMonth || !selectedYear) {
-    errorBox.innerText = currentLang === "ar"
-      ? "يرجى إدخال اليوم والشهر والسنة"
-      : "Please enter day, month, and year";
-    return;
-  }
+    .top-bar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:10px;
+      margin-bottom:14px;
+    }
 
-  const d = Number(selectedDay);
-  const m = Number(selectedMonth);
-  const y = Number(selectedYear);
-  const thisYear = new Date().getFullYear();
+    .lang-btn{
+      min-width:128px;
+      background:var(--btn);
+      color:var(--text);
+      border:1px solid var(--btnBorder);
+      border-radius:18px;
+      padding:12px 14px;
+      font-size:15px;
+      cursor:pointer;
+      backdrop-filter:blur(8px);
+      -webkit-backdrop-filter:blur(8px);
+      box-shadow:var(--shadow);
+      transition:.18s ease;
+    }
 
-  if (isNaN(d) || d < 1 || d > 31) {
-    markFieldError(dayPicker, currentLang === "ar"
-      ? "اليوم يجب أن يكون بين 1 و 31"
-      : "Day must be between 1 and 31");
-    return;
-  }
+    .theme-toggle{
+      width:110px;
+      height:58px;
+      border:none;
+      border-radius:999px;
+      background:var(--toggleOn);
+      position:relative;
+      cursor:pointer;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.15),
+        0 10px 22px rgba(0,0,0,0.18);
+      transition:.22s ease;
+      overflow:hidden;
+      flex:0 0 auto;
+    }
 
-  if (isNaN(m) || m < 1 || m > 12) {
-    markFieldError(monthPicker, currentLang === "ar"
-      ? "الشهر يجب أن يكون بين 1 و 12"
-      : "Month must be between 1 and 12");
-    return;
-  }
+    .theme-toggle .icon-track{
+      position:absolute;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 14px;
+      font-size:22px;
+      pointer-events:none;
+    }
 
-  if (isNaN(y) || y < 1900 || y > thisYear) {
-    markFieldError(yearPicker, currentLang === "ar"
-      ? "السنة غير صحيحة"
-      : "Invalid year");
-    return;
-  }
+    .theme-toggle .moon,
+    .theme-toggle .sun{
+      transition:.22s ease;
+    }
 
-  const testDate = new Date(y, m - 1, d);
+    .theme-toggle .moon{ opacity:1; }
+    .theme-toggle .sun{ opacity:.25; }
 
-  if (
-    testDate.getFullYear() !== y ||
-    testDate.getMonth() !== m - 1 ||
-    testDate.getDate() !== d
-  ) {
-    document.getElementById("dateError").innerText = currentLang === "ar"
-      ? "تاريخ غير صحيح"
-      : "Invalid date";
-    dayPicker.classList.add("error-field");
-    monthPicker.classList.add("error-field");
-    yearPicker.classList.add("error-field");
-    return;
-  }
+    body.light-mode .theme-toggle .moon{ opacity:.25; }
+    body.light-mode .theme-toggle .sun{ opacity:1; }
 
-  document.getElementById("birthButton").innerText =
-    currentLang === "ar" ? `${y}/${m}/${d}` : `${d}/${m}/${y}`;
+    .theme-toggle::before{
+      content:"";
+      position:absolute;
+      width:46px;
+      height:46px;
+      top:6px;
+      right:6px;
+      border-radius:50%;
+      background:var(--toggleKnob);
+      transition:.22s ease;
+      box-shadow:0 4px 10px rgba(0,0,0,0.18);
+    }
 
-  closeBirthSheet();
-}
+    body.light-mode .theme-toggle::before{
+      transform:translateX(-52px);
+    }
 
-function toggleOption(type) {
-  if (type === "age") {
-    ageOn = !ageOn;
-    document.getElementById("ageBtn").classList.toggle("active", ageOn);
-  }
-  if (type === "hijri") {
-    hijriOn = !hijriOn;
-    document.getElementById("hijriBtn").classList.toggle("active", hijriOn);
-  }
-  if (type === "water") {
-    waterOn = !waterOn;
-    document.getElementById("waterBtn").classList.toggle("active", waterOn);
-  }
-  if (type === "sleep") {
-    sleepOn = !sleepOn;
-    document.getElementById("sleepBtn").classList.toggle("active", sleepOn);
-  }
-  if (type === "meals") {
-    mealsOn = !mealsOn;
-    document.getElementById("mealsBtn").classList.toggle("active", mealsOn);
-  }
-  if (type === "ramadan") {
-    ramadanOn = !ramadanOn;
-    document.getElementById("ramadanBtn").classList.toggle("active", ramadanOn);
-  }
-  if (type === "prayers") {
-    prayersOn = !prayersOn;
-    document.getElementById("prayersBtn").classList.toggle("active", prayersOn);
-  }
-  if (type === "hours") {
-    hoursOn = !hoursOn;
-    document.getElementById("hoursBtn").classList.toggle("active", hoursOn);
-  }
-  if (type === "heartbeat") {
-    heartbeatOn = !heartbeatOn;
-    document.getElementById("heartbeatBtn").classList.toggle("active", heartbeatOn);
-  }
-}
+    .box,
+    .sheet,
+    .birth-btn,
+    .main-btn,
+    .option-card{
+      backdrop-filter:blur(8px);
+      -webkit-backdrop-filter:blur(8px);
+    }
 
-function calculateAge() {
-  const error = document.getElementById("error");
-  error.innerText = "";
+    .box{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:28px;
+      padding:22px 16px;
+      box-shadow:var(--shadow);
+    }
 
-  const d = Number(selectedDay);
-  const m = Number(selectedMonth);
-  const y = Number(selectedYear);
+    h1{
+      margin:0 0 10px;
+      font-size:34px;
+    }
 
-  if (!selectedDay || !selectedMonth || !selectedYear) {
-    error.innerText = currentLang === "ar"
-      ? "يرجى اختيار تاريخ الميلاد"
-      : "Please choose your birth date";
-    return;
-  }
+    .desc{
+      color:var(--sub);
+      font-size:17px;
+      line-height:1.9;
+      margin-bottom:18px;
+    }
 
-  const birthDate = new Date(y, m - 1, d);
-  const today = new Date();
+    .birth-btn{
+      width:100%;
+      max-width:320px;
+      background:var(--btn);
+      color:var(--text);
+      border:1px solid var(--btnBorder);
+      padding:15px 16px;
+      font-size:18px;
+      border-radius:18px;
+      cursor:pointer;
+      margin-bottom:18px;
+      transition:.18s ease;
+    }
 
-  if (
-    birthDate.getFullYear() !== y ||
-    birthDate.getMonth() !== m - 1 ||
-    birthDate.getDate() !== d
-  ) {
-    error.innerText = currentLang === "ar"
-      ? "تاريخ الميلاد غير صحيح"
-      : "Invalid birth date";
-    return;
-  }
+    .section-title{
+      font-size:20px;
+      margin:8px 0 12px;
+      color:var(--text);
+      text-align:right;
+    }
 
-  if (birthDate > today) {
-    error.innerText = currentLang === "ar"
-      ? "تاريخ الميلاد لا يمكن أن يكون في المستقبل"
-      : "Birth date cannot be in the future";
-    return;
-  }
+    .options-grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:10px;
+      margin-bottom:18px;
+    }
 
-  const data = {
-    selectedDay,
-    selectedMonth,
-    selectedYear,
-    currentLang,
-    ageOn,
-    hijriOn,
-    waterOn,
-    sleepOn,
-    mealsOn,
-    ramadanOn,
-    prayersOn,
-    hoursOn,
-    heartbeatOn,
-    theme: document.body.classList.contains("light-mode") ? "light" : "dark"
-  };
+    .option-card{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      background:var(--btn);
+      border:1px solid var(--btnBorder);
+      border-radius:20px;
+      padding:14px 14px;
+      box-shadow:
+        inset 0 1px 0 rgba(255,255,255,0.06),
+        0 5px 14px rgba(0,0,0,0.10);
+    }
 
-  localStorage.setItem("ageCalcData", JSON.stringify(data));
-  window.location.href = "result.html";
-}
+    .option-label{
+      font-size:16px;
+      color:var(--text);
+      text-align:right;
+      line-height:1.5;
+    }
 
-function toggleTheme() {
-  document.body.classList.toggle("light-mode");
-}
+    .switch-btn{
+      width:60px;
+      height:36px;
+      border:none;
+      border-radius:999px;
+      background:var(--toggleOff);
+      position:relative;
+      cursor:pointer;
+      flex:0 0 auto;
+      transition:.18s ease;
+      padding:0;
+      box-shadow:inset 0 1px 2px rgba(0,0,0,0.14);
+    }
 
-function toggleLanguage() {
-  clearDateError();
+    .switch-btn::before{
+      content:"";
+      position:absolute;
+      width:28px;
+      height:28px;
+      top:4px;
+      right:4px;
+      background:#ffffff;
+      border-radius:50%;
+      transition:.18s ease;
+      box-shadow:0 2px 8px rgba(0,0,0,0.14);
+    }
 
-  if (currentLang === "ar") {
-    currentLang = "en";
-    document.documentElement.lang = "en";
-    document.documentElement.dir = "ltr";
+    .switch-btn.active{
+      background:var(--toggleOn);
+    }
 
-    document.getElementById("mainTitle").innerText = "Age Calculator";
-    document.getElementById("mainDesc").innerText =
-      "Choose your birth date, enable the calculations you want, then press calculate.";
-    document.getElementById("birthButton").innerText = "Choose birth date";
-    document.getElementById("optionsMainTitle").innerText = "Choose what you want to calculate";
-    document.getElementById("labelAge").innerText = "Gregorian age";
-    document.getElementById("labelHijri").innerText = "Hijri age";
-    document.getElementById("labelWater").innerText = "Water amount";
-    document.getElementById("labelSleep").innerText = "Sleep hours";
-    document.getElementById("labelMeals").innerText = "Meals count";
-    document.getElementById("labelRamadan").innerText = "How many Ramadans";
-    document.getElementById("labelPrayers").innerText = "Prayers since age 7";
-    document.getElementById("labelHours").innerText = "Lived hours";
-    document.getElementById("labelHeartbeat").innerText = "Heart beats";
-    document.getElementById("calcBtn").innerText = "Calculate";
-    document.getElementById("sheetTitle").innerText = "Choose Birth Date";
-    document.getElementById("dayLabel").innerText = "Day";
-    document.getElementById("monthLabel").innerText = "Month";
-    document.getElementById("yearLabel").innerText = "Year";
-    document.getElementById("confirmBtn").innerText = "Confirm";
-    document.getElementById("cancelBtn").innerText = "Cancel";
-    document.getElementById("aboutLink").innerText = "About";
-    document.getElementById("contactLink").innerText = "Contact";
-    document.getElementById("privacyLink").innerText = "Privacy Policy";
-  } else {
-    currentLang = "ar";
-    document.documentElement.lang = "ar";
-    document.documentElement.dir = "rtl";
+    .switch-btn.active::before{
+      transform:translateX(-24px);
+    }
 
-    document.getElementById("mainTitle").innerText = "حساب العمر";
-    document.getElementById("mainDesc").innerText =
-      "اختر تاريخ ميلادك ثم فعّل الحسابات التي تريدها، وبعدها اضغط على احسب.";
-    document.getElementById("birthButton").innerText = "اختر تاريخ الميلاد";
-    document.getElementById("optionsMainTitle").innerText = "اختر ما تريد حسابه";
-    document.getElementById("labelAge").innerText = "العمر الميلادي";
-    document.getElementById("labelHijri").innerText = "العمر الهجري";
-    document.getElementById("labelWater").innerText = "كمية الماء";
-    document.getElementById("labelSleep").innerText = "ساعات النوم";
-    document.getElementById("labelMeals").innerText = "عدد الوجبات";
-    document.getElementById("labelRamadan").innerText = "كم رمضان مر عليك";
-    document.getElementById("labelPrayers").innerText = "كم صلاة صليت من عمر 7";
-    document.getElementById("labelHours").innerText = "كم ساعة عشت";
-    document.getElementById("labelHeartbeat").innerText = "كم نبضة قلب";
-    document.getElementById("calcBtn").innerText = "احسب";
-    document.getElementById("sheetTitle").innerText = "اختر الميلاد";
-    document.getElementById("dayLabel").innerText = "اليوم";
-    document.getElementById("monthLabel").innerText = "الشهر";
-    document.getElementById("yearLabel").innerText = "السنة";
-    document.getElementById("confirmBtn").innerText = "تأكيد";
-    document.getElementById("cancelBtn").innerText = "إلغاء";
-    document.getElementById("aboutLink").innerText = "من نحن";
-    document.getElementById("contactLink").innerText = "اتصل بنا";
-    document.getElementById("privacyLink").innerText = "سياسة الخصوصية";
-  }
-}
-</script>
+    .main-btn{
+      background:rgba(79,140,255,0.18);
+      color:#fff;
+      border:1px solid rgba(79,140,255,0.30);
+      padding:15px 28px;
+      font-size:20px;
+      border-radius:20px;
+      cursor:pointer;
+      min-width:190px;
+      transition:.18s ease;
+      box-shadow:
+        0 8px 20px rgba(79,140,255,0.14),
+        inset 0 1px 0 rgba(255,255,255,0.08);
+    }
+
+    .error{
+      color:var(--danger);
+      margin-top:14px;
+      font-size:16px;
+      min-height:24px;
+    }
+
+    .sheet-overlay{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.45);
+      display:none;
+      align-items:flex-end;
+      justify-content:center;
+      z-index:1000;
+    }
+
+    .sheet{
+      width:100%;
+      max-width:560px;
+      background:rgba(18,22,29,0.92);
+      border:1px solid rgba(255,255,255,0.1);
+      border-radius:28px 28px 0 0;
+      padding:18px 14px 24px;
+      box-shadow:0 -10px 26px rgba(0,0,0,0.24);
+    }
+
+    body.light-mode .sheet{
+      background:rgba(255,255,255,0.96);
+    }
+
+    .sheet-header{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      margin-bottom:14px;
+    }
+
+    .sheet-title{
+      font-size:28px;
+      font-weight:700;
+      color:var(--text);
+    }
+
+    .sheet-icon{
+      background:var(--btn);
+      border:1px solid var(--btnBorder);
+      color:var(--text);
+      font-size:26px;
+      cursor:pointer;
+      width:44px;
+      height:44px;
+      border-radius:14px;
+      line-height:1;
+    }
+
+    .picker-wrap{
+      display:flex;
+      gap:10px;
+      justify-content:center;
+      margin-top:8px;
+    }
+
+    .picker-col{
+      flex:1;
+    }
+
+    .picker-label{
+      margin-bottom:8px;
+      color:var(--sub);
+      font-size:15px;
+    }
+
+    .picker-input{
+      width:100%;
+      height:64px;
+      background:var(--btn);
+      color:var(--text);
+      border:1px solid var(--btnBorder);
+      border-radius:20px;
+      font-size:28px;
+      text-align:center;
+      outline:none;
+      transition:.18s ease;
+    }
+
+    .picker-input.error-field{
+      border:1px solid var(--danger);
+      box-shadow:0 0 0 2px rgba(255,80,80,0.10);
+    }
+
+    .date-error{
+      color:var(--danger);
+      margin-top:10px;
+      font-size:15px;
+      min-height:20px;
+    }
+
+    .sheet-actions{
+      margin-top:12px;
+      display:flex;
+      gap:10px;
+      justify-content:center;
+    }
+
+    .sheet-confirm,
+    .sheet-cancel{
+      border:none;
+      border-radius:16px;
+      padding:13px 22px;
+      font-size:18px;
+      cursor:pointer;
+      color:white;
+    }
+
+    .sheet-confirm{
+      background:rgba(79,140,255,0.85);
+    }
+
+    .sheet-cancel{
+      background:rgba(255,255,255,0.18);
+      border:1px solid rgba(255,255,255,0.12);
+    }
+
+    body.light-mode .sheet-cancel{
+      color:#111;
+      background:rgba(0,0,0,0.06);
+      border:1px solid rgba(0,0,0,0.08);
+    }
+
+    footer{
+      margin-top:24px;
+      padding:18px 12px;
+      text-align:center;
+      color:var(--sub);
+      font-size:15px;
+    }
+
+    footer a{
+      color:var(--sub);
+      text-decoration:none;
+      margin:0 8px;
+    }
+
+    @media (max-width:520px){
+      .options-grid{
+        grid-template-columns:1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <div class="top-bar">
+      <button class="lang-btn" id="langToggleBtn" onclick="toggleLanguage()">العربية | EN</button>
+
+      <button class="theme-toggle" id="themeToggleBtn" onclick="toggleTheme()" aria-label="تغيير الوضع">
+        <div class="icon-track">
+          <span class="moon">🌙</span>
+          <span class="sun">☀</span>
+        </div>
+      </button>
+    </div>
+
+    <div class="box">
+      <div id="startSection">
+        <h1 id="mainTitle">حساب العمر</h1>
+
+        <div class="desc" id="mainDesc">
+          اختر تاريخ ميلادك ثم فعّل الحسابات التي تريدها، وبعدها اضغط على احسب.
+        </div>
+
+        <button class="birth-btn" id="birthButton" onclick="openBirthSheet()">اختر تاريخ الميلاد</button>
+
+        <div class="section-title" id="optionsMainTitle">اختر ما تريد حسابه</div>
+
+        <div class="options-grid">
+          <div class="option-card">
+            <div class="option-label" id="labelAge">العمر الميلادي</div>
+            <button class="switch-btn active" id="ageBtn" onclick="toggleOption('age')"></button>
+          </div>
+
+          <div class="option-card">
+            <div class="option-label" id="labelHijri">العمر الهجري</div>
+            <button class="switch-btn active" id="hijriBtn" onclick="toggleOption('hijri')"></button>
+          </div>
+
+          <div class="option-card">
+            <div class="option-label" id="labelWater">كمية الماء</div>
+            <button class="switch-btn" id="waterBtn" onclick="toggleOption('water')"></button>
+          </div>
+
+          <div class="option-card">
+            <div class="option-label" id="labelSleep">ساعات النوم</div>
+            <button class="switch-btn" id="sleepBtn" onclick="toggleOption('sleep')"></button>
+          </div>
+
+          <div class="option-card">
+            <div class="option-label" id="labelMeals">عدد الوجبات</div>
+            <button class="switch-btn" id="mealsBtn" onclick="toggleOption('meals')"></button>
+          </div>
+
+          <div class="option-card">
+            <div class="option-label" id="labelRamadan">كم رمضان مر عليك</div>
+            <button class="switch-btn" id="ramadanBtn" onclick="toggleOption('ramadan')"></button>
+          </div>
+
+          <div class="option-card">
+            <div class="option-label" id="labelPrayers">كم صلاة صليت من عمر 7</div>
+            <button class="switch-btn" id="prayersBtn" onclick="toggleOption('prayers')"></button>
+          </div>
+
+          <div class="option-card">
+            <div class="option-label" id="labelHours">كم ساعة عشت</div>
+            <button class="switch-btn" id="hoursBtn" onclick="toggleOption('hours')"></button>
+          </div>
+
+          <div class="option-card">
+            <div class="option-label" id="labelHeartbeat">كم نبضة قلب</div>
+            <button class="switch-btn" id="heartbeatBtn" onclick="toggleOption('heartbeat')"></button>
+          </div>
+        </div>
+
+        <button class="main-btn" id="calcBtn" onclick="calculateAge()">احسب</button>
+        <div class="error" id="error"></div>
+      </div>
+    </div>
+
+    <footer>
+      <a href="about.html" id="aboutLink">من نحن</a> |
+      <a href="contact.html" id="contactLink">اتصل بنا</a> |
+      <a href="privacy.html" id="privacyLink">سياسة الخصوصية</a>
+    </footer>
+
+  </div>
+
+  <div class="sheet-overlay" id="birthSheet">
+    <div class="sheet">
+      <div class="sheet-header">
+        <button class="sheet-icon" onclick="closeBirthSheet()">✕</button>
+        <div class="sheet-title" id="sheetTitle">اختر الميلاد</div>
+        <button class="sheet-icon" onclick="confirmBirthDate()">✓</button>
+      </div>
+
+      <div class="picker-wrap">
+        <div class="picker-col">
+          <div class="picker-label" id="dayLabel">اليوم</div>
+          <input class="picker-input" id="dayPicker" type="number" min="1" max="31" placeholder="1">
+        </div>
+
+        <div class="picker-col">
+          <div class="picker-label" id="monthLabel">الشهر</div>
+          <input class="picker-input" id="monthPicker" type="number" min="1" max="12" placeholder="1">
+        </div>
+
+        <div class="picker-col">
+          <div class="picker-label" id="yearLabel">السنة</div>
+          <input class="picker-input" id="yearPicker" type="number" min="1900" max="2100" placeholder="2000">
+        </div>
+      </div>
+
+      <div id="dateError" class="date-error"></div>
+
+      <div class="sheet-actions">
+        <button class="sheet-confirm" id="confirmBtn" onclick="confirmBirthDate()">تأكيد</button>
+        <button class="sheet-cancel" id="cancelBtn" onclick="closeBirthSheet()">إلغاء</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let selectedDay = "";
+    let selectedMonth = "";
+    let selectedYear = "";
+    let currentLang = "ar";
+
+    let ageOn = true;
+    let hijriOn = true;
+    let waterOn = false;
+    let sleepOn = false;
+    let mealsOn = false;
+    let ramadanOn = false;
+    let prayersOn = false;
+    let hoursOn = false;
+    let heartbeatOn = false;
+
+    const dayPicker = document.getElementById("dayPicker");
+    const monthPicker = document.getElementById("monthPicker");
+    const yearPicker = document.getElementById("yearPicker");
+
+    function openBirthSheet() {
+      document.getElementById("birthSheet").style.display = "flex";
+    }
+
+    function closeBirthSheet() {
+      document.getElementById("birthSheet").style.display = "none";
+      clearDateError();
+    }
+
+    function clearDateError() {
+      document.getElementById("dateError").innerText = "";
+      dayPicker.classList.remove("error-field");
+      monthPicker.classList.remove("error-field");
+      yearPicker.classList.remove("error-field");
+    }
+
+    function markFieldError(field, message) {
+      clearDateError();
+      document.getElementById("dateError").innerText = message;
+      field.classList.add("error-field");
+    }
+
+    function confirmBirthDate() {
+      const errorBox = document.getElementById("dateError");
+      clearDateError();
+
+      selectedDay = dayPicker.value.trim();
+      selectedMonth = monthPicker.value.trim();
+      selectedYear = yearPicker.value.trim();
+
+      if (!selectedDay || !selectedMonth || !selectedYear) {
+        errorBox.innerText = currentLang === "ar"
+          ? "يرجى إدخال اليوم والشهر والسنة"
+          : "Please enter day, month, and year";
+        return;
+      }
+
+      const d = Number(selectedDay);
+      const m = Number(selectedMonth);
+      const y = Number(selectedYear);
+      const thisYear = new Date().getFullYear();
+
+      if (isNaN(d) || d < 1 || d > 31) {
+        markFieldError(dayPicker, currentLang === "ar"
+          ? "اليوم يجب أن يكون بين 1 و 31"
+          : "Day must be between 1 and 31");
+        return;
+      }
+
+      if (isNaN(m) || m < 1 || m > 12) {
+        markFieldError(monthPicker, currentLang === "ar"
+          ? "الشهر يجب أن يكون بين 1 و 12"
+          : "Month must be between 1 and 12");
+        return;
+      }
+
+      if (isNaN(y) || y < 1900 || y > thisYear) {
+        markFieldError(yearPicker, currentLang === "ar"
+          ? "السنة غير صحيحة"
+          : "Invalid year");
+        return;
+      }
+
+      const testDate = new Date(y, m - 1, d);
+
+      if (
+        testDate.getFullYear() !== y ||
+        testDate.getMonth() !== m - 1 ||
+        testDate.getDate() !== d
+      ) {
+        document.getElementById("dateError").innerText = currentLang === "ar"
+          ? "تاريخ غير صحيح"
+          : "Invalid date";
+        dayPicker.classList.add("error-field");
+        monthPicker.classList.add("error-field");
+        yearPicker.classList.add("error-field");
+        return;
+      }
+
+      document.getElementById("birthButton").innerText =
+        currentLang === "ar" ? `${y}/${m}/${d}` : `${d}/${m}/${y}`;
+
+      closeBirthSheet();
+    }
+
+    function toggleOption(type) {
+      if (type === "age") {
+        ageOn = !ageOn;
+        document.getElementById("ageBtn").classList.toggle("active", ageOn);
+      }
+      if (type === "hijri") {
+        hijriOn = !hijriOn;
+        document.getElementById("hijriBtn").classList.toggle("active", hijriOn);
+      }
+      if (type === "water") {
+        waterOn = !waterOn;
+        document.getElementById("waterBtn").classList.toggle("active", waterOn);
+      }
+      if (type === "sleep") {
+        sleepOn = !sleepOn;
+        document.getElementById("sleepBtn").classList.toggle("active", sleepOn);
+      }
+      if (type === "meals") {
+        mealsOn = !mealsOn;
+        document.getElementById("mealsBtn").classList.toggle("active", mealsOn);
+      }
+      if (type === "ramadan") {
+        ramadanOn = !ramadanOn;
+        document.getElementById("ramadanBtn").classList.toggle("active", ramadanOn);
+      }
+      if (type === "prayers") {
+        prayersOn = !prayersOn;
+        document.getElementById("prayersBtn").classList.toggle("active", prayersOn);
+      }
+      if (type === "hours") {
+        hoursOn = !hoursOn;
+        document.getElementById("hoursBtn").classList.toggle("active", hoursOn);
+      }
+      if (type === "heartbeat") {
+        heartbeatOn = !heartbeatOn;
+        document.getElementById("heartbeatBtn").classList.toggle("active", heartbeatOn);
+      }
+    }
+
+    function calculateAge() {
+      const error = document.getElementById("error");
+      error.innerText = "";
+
+      const d = Number(selectedDay);
+      const m = Number(selectedMonth);
+      const y = Number(selectedYear);
+
+      if (!selectedDay || !selectedMonth || !selectedYear) {
+        error.innerText = currentLang === "ar"
+          ? "يرجى اختيار تاريخ الميلاد"
+          : "Please choose your birth date";
+        return;
+      }
+
+      const birthDate = new Date(y, m - 1, d);
+      const today = new Date();
+
+      if (
+        birthDate.getFullYear() !== y ||
+        birthDate.getMonth() !== m - 1 ||
+        birthDate.getDate() !== d
+      ) {
+        error.innerText = currentLang === "ar"
+          ? "تاريخ الميلاد غير صحيح"
+          : "Invalid birth date";
+        return;
+      }
+
+      if (birthDate > today) {
+        error.innerText = currentLang === "ar"
+          ? "تاريخ الميلاد لا يمكن أن يكون في المستقبل"
+          : "Birth date cannot be in the future";
+        return;
+      }
+
+      const data = {
+        selectedDay,
+        selectedMonth,
+        selectedYear,
+        currentLang,
+        ageOn,
+        hijriOn,
+        waterOn,
+        sleepOn,
+        mealsOn,
+        ramadanOn,
+        prayersOn,
+        hoursOn,
+        heartbeatOn,
+        theme: document.body.classList.contains("light-mode") ? "light" : "dark"
+      };
+
+      localStorage.setItem("ageCalcData", JSON.stringify(data));
+      window.location.href = "result.html";
+    }
+
+    function toggleTheme() {
+      document.body.classList.toggle("light-mode");
+    }
+
+    function toggleLanguage() {
+      clearDateError();
+
+      if (currentLang === "ar") {
+        currentLang = "en";
+        document.documentElement.lang = "en";
+        document.documentElement.dir = "ltr";
+
+        document.getElementById("mainTitle").innerText = "Age Calculator";
+        document.getElementById("mainDesc").innerText =
+          "Choose your birth date, enable the calculations you want, then press calculate.";
+        document.getElementById("birthButton").innerText = "Choose birth date";
+        document.getElementById("optionsMainTitle").innerText = "Choose what you want to calculate";
+        document.getElementById("labelAge").innerText = "Gregorian age";
+        document.getElementById("labelHijri").innerText = "Hijri age";
+        document.getElementById("labelWater").innerText = "Water amount";
+        document.getElementById("labelSleep").innerText = "Sleep hours";
+        document.getElementById("labelMeals").innerText = "Meals count";
+        document.getElementById("labelRamadan").innerText = "How many Ramadans";
+        document.getElementById("labelPrayers").innerText = "Prayers since age 7";
+        document.getElementById("labelHours").innerText = "Lived hours";
+        document.getElementById("labelHeartbeat").innerText = "Heart beats";
+        document.getElementById("calcBtn").innerText = "Calculate";
+        document.getElementById("sheetTitle").innerText = "Choose Birth Date";
+        document.getElementById("dayLabel").innerText = "Day";
+        document.getElementById("monthLabel").innerText = "Month";
+        document.getElementById("yearLabel").innerText = "Year";
+        document.getElementById("confirmBtn").innerText = "Confirm";
+        document.getElementById("cancelBtn").innerText = "Cancel";
+        document.getElementById("aboutLink").innerText = "About";
+        document.getElementById("contactLink").innerText = "Contact";
+        document.getElementById("privacyLink").innerText = "Privacy Policy";
+      } else {
+        currentLang = "ar";
+        document.documentElement.lang = "ar";
+        document.documentElement.dir = "rtl";
+
+        document.getElementById("mainTitle").innerText = "حساب العمر";
+        document.getElementById("mainDesc").innerText =
+          "اختر تاريخ ميلادك ثم فعّل الحسابات التي تريدها، وبعدها اضغط على احسب.";
+        document.getElementById("birthButton").innerText = "اختر تاريخ الميلاد";
+        document.getElementById("optionsMainTitle").innerText = "اختر ما تريد حسابه";
+        document.getElementById("labelAge").innerText = "العمر الميلادي";
+        document.getElementById("labelHijri").innerText = "العمر الهجري";
+        document.getElementById("labelWater").innerText = "كمية الماء";
+        document.getElementById("labelSleep").innerText = "ساعات النوم";
+        document.getElementById("labelMeals").innerText = "عدد الوجبات";
+        document.getElementById("labelRamadan").innerText = "كم رمضان مر عليك";
+        document.getElementById("labelPrayers").innerText = "كم صلاة صليت من عمر 7";
+        document.getElementById("labelHours").innerText = "كم ساعة عشت";
+        document.getElementById("labelHeartbeat").innerText = "كم نبضة قلب";
+        document.getElementById("calcBtn").innerText = "احسب";
+        document.getElementById("sheetTitle").innerText = "اختر الميلاد";
+        document.getElementById("dayLabel").innerText = "اليوم";
+        document.getElementById("monthLabel").innerText = "الشهر";
+        document.getElementById("yearLabel").innerText = "السنة";
+        document.getElementById("confirmBtn").innerText = "تأكيد";
+        document.getElementById("cancelBtn").innerText = "إلغاء";
+        document.getElementById("aboutLink").innerText = "من نحن";
+        document.getElementById("contactLink").innerText = "اتصل بنا";
+        document.getElementById("privacyLink").innerText = "سياسة الخصوصية";
+      }
+    }
+  </script>
+</body>
+</html>
