@@ -15,6 +15,7 @@
   --blue:#4f8cff;
   --shadow:0 12px 28px rgba(0,0,0,0.22);
   --danger:#ff8e8e;
+  --success:#4ade80;
 }
 
 body.light-mode{
@@ -29,6 +30,7 @@ body.light-mode{
   --blue:#2f6fff;
   --shadow:0 12px 24px rgba(0,0,0,0.10);
   --danger:#d83f3f;
+  --success:#16a34a;
 }
 
 body{
@@ -97,7 +99,8 @@ body{
 #result,
 .birth-btn,
 .main-btn,
-.option-card{
+.option-card,
+.share-btn{
   backdrop-filter:blur(8px);
   -webkit-backdrop-filter:blur(8px);
 }
@@ -264,6 +267,11 @@ h1{
   padding:16px 14px;
   text-align:right;
   box-shadow:0 8px 18px rgba(0,0,0,0.10);
+  transition:.18s ease;
+}
+
+.result-card:hover{
+  transform:translateY(-1px);
 }
 
 body.light-mode .result-card{
@@ -295,12 +303,37 @@ body.light-mode .result-card{
 #cardMeals{border-color:rgba(255,170,90,0.35);}
 #cardRamadan{border-color:rgba(70,220,170,0.35);}
 #cardPrayers{border-color:rgba(255,215,90,0.35);}
+#cardHours{border-color:rgba(255,110,200,0.35);}
+#cardHeartbeat{border-color:rgba(255,80,120,0.35);}
 
 .note{
   margin-top:12px;
   color:var(--sub);
   font-size:14px;
   line-height:1.8;
+}
+
+.share-wrap{
+  margin-top:16px;
+  display:flex;
+  justify-content:center;
+}
+
+.share-btn{
+  background:rgba(74,222,128,0.14);
+  color:var(--text);
+  border:1px solid rgba(74,222,128,0.28);
+  padding:13px 18px;
+  border-radius:18px;
+  font-size:17px;
+  cursor:pointer;
+  transition:.18s ease;
+  box-shadow:0 8px 18px rgba(0,0,0,0.08);
+}
+
+.share-btn:hover,
+.share-btn:active{
+  transform:translateY(-1px);
 }
 
 .sheet-overlay{
