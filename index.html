@@ -107,6 +107,32 @@
       letter-spacing:.3px;
     }
 
+    .logo-wrap{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+    }
+
+    .logo-icon{
+      width:38px;
+      height:38px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      border-radius:50%;
+      background:var(--btn);
+      border:1px solid var(--btnBorder);
+      box-shadow:var(--shadow);
+      flex:0 0 auto;
+    }
+
+    .logo-text{
+      font-size:24px;
+      font-weight:800;
+      letter-spacing:.4px;
+    }
+
     .theme-toggle{
       width:84px;
       height:44px;
@@ -607,6 +633,10 @@
       .brand-name{
         font-size:19px;
       }
+
+      .logo-text{
+        font-size:21px;
+      }
     }
   </style>
 
@@ -661,7 +691,16 @@
     <div class="top-bar">
       <button class="mini-btn" id="langToggleBtn" onclick="toggleLanguage()">AR/EN</button>
 
-      <div class="brand-name">𓆩 Noor 𓆪</div>
+      <div class="brand-name logo-wrap">
+        <span class="logo-icon" aria-hidden="true">
+          <svg viewBox="0 0 64 64" width="28" height="28" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="30" fill="rgba(79,134,238,.15)" stroke="rgba(255,255,255,.14)"/>
+            <path d="M39.5 18.5C31 20 25 27.3 25 36c0 4.7 1.8 9 4.8 12.2A16 16 0 1 1 39.5 18.5Z" fill="#f4d06f"/>
+            <path d="M18 46c4-6 9.5-9 14-9s10 3 14 9" stroke="rgba(255,255,255,.75)" stroke-width="2.4" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <span class="logo-text">Noor</span>
+      </div>
 
       <button class="theme-toggle" id="themeToggleBtn" onclick="toggleTheme()" aria-label="theme">
         <div class="icon-track">
@@ -681,6 +720,7 @@
       <div class="quick-links">
         <a href="#calculatorSection" id="quickCalc">ابدأ الحساب</a>
         <a href="#howItWorks" id="quickHow">طريقة الاستخدام</a>
+        <a href="articles.html" id="quickArticles">المقالات</a>
         <a href="#faqSection" id="quickFaq">الأسئلة الشائعة</a>
       </div>
     </section>
@@ -841,6 +881,26 @@
       </div>
     </section>
 
+    <section class="articles-section" id="articlesHubSection">
+      <h2 class="content-title" id="articlesHubTitle">مكتبة المقالات</h2>
+      <p class="content-text" id="articlesHubText">
+        تصفح مقالات مفيدة حول حساب العمر، الفرق بين العمر الميلادي والهجري، وطريقة الحساب الدقيقة، مع شروحات مبسطة تساعد على فهم النتائج بشكل أفضل.
+      </p>
+
+      <div class="article-grid">
+        <div class="article-card">
+          <h3 id="articlesHubCard1Title">15 مقال مفيد</h3>
+          <p id="articlesHubCard1Text">مجموعة مقالات مهيأة لمحركات البحث لتقوية ظهور الموقع وزيادة المحتوى المفيد للزوار.</p>
+        </div>
+
+        <div class="article-card">
+          <h3 id="articlesHubCard2Title">صفحة مقالات رئيسية</h3>
+          <p id="articlesHubCard2Text">يمكنك الدخول إلى صفحة المقالات وقراءة جميع المواضيع الجديدة من مكان واحد.</p>
+          <a href="articles.html" class="read-link" id="articlesHubLink">فتح صفحة المقالات</a>
+        </div>
+      </div>
+    </section>
+
     <section class="faq-section" id="faqSection">
       <h2 class="content-title" id="faqTitle">الأسئلة الشائعة</h2>
 
@@ -871,6 +931,7 @@
         <a href="contact.html" id="contactPageLink">اتصل بنا</a>
         <a href="privacy.html" id="privacyPageLink">سياسة الخصوصية</a>
         <a href="terms.html" id="termsPageLink">شروط الاستخدام</a>
+        <a href="articles.html" id="articlesPageLink">المقالات</a>
       </div>
     </section>
 
@@ -879,7 +940,8 @@
         <a href="about.html" id="aboutLink">من نحن</a> |
         <a href="contact.html" id="contactLink">اتصل بنا</a> |
         <a href="privacy.html" id="privacyLink">سياسة الخصوصية</a> |
-        <a href="terms.html" id="termsLink">شروط الاستخدام</a>
+        <a href="terms.html" id="termsLink">شروط الاستخدام</a> |
+        <a href="articles.html" id="articlesFooterLink">المقالات</a>
       </div>
       <div class="footer-note" id="footerNote">
         هذا الموقع يوفر أداة مجانية لحساب العمر وبعض الإحصائيات المرتبطة به بطريقة سهلة وسريعة. باستخدامك للموقع فأنت توافق على الصفحات القانونية المعروضة أعلاه.
@@ -1136,6 +1198,7 @@
         document.getElementById("heroText").innerText = "Calculate your age easily and quickly, and discover your Gregorian age, Hijri age, lived hours, and other useful statistics through a simple interface that supports Arabic and English.";
         document.getElementById("quickCalc").innerText = "Start";
         document.getElementById("quickHow").innerText = "How it works";
+        document.getElementById("quickArticles").innerText = "Articles";
         document.getElementById("quickFaq").innerText = "FAQ";
 
         document.getElementById("mainDesc").innerText = "Choose your birth date, enable the calculations you want, then press calculate.";
@@ -1196,6 +1259,14 @@
         document.getElementById("readTermsText").innerText = "Read the general terms of using the website and the service provided inside it.";
         document.getElementById("readTermsLink").innerText = "Read page";
 
+        document.getElementById("articlesHubTitle").innerText = "Articles Library";
+        document.getElementById("articlesHubText").innerText = "Browse useful articles about age calculation, the difference between Gregorian and Hijri age, and accurate calculation methods.";
+        document.getElementById("articlesHubCard1Title").innerText = "15 useful articles";
+        document.getElementById("articlesHubCard1Text").innerText = "A collection of SEO-friendly articles to strengthen the site's visibility and provide more value to visitors.";
+        document.getElementById("articlesHubCard2Title").innerText = "Main articles page";
+        document.getElementById("articlesHubCard2Text").innerText = "You can open the articles page and read all new topics from one place.";
+        document.getElementById("articlesHubLink").innerText = "Open articles page";
+
         document.getElementById("faqTitle").innerText = "Frequently asked questions";
         document.getElementById("faq1q").innerText = "Is the tool free?";
         document.getElementById("faq1a").innerText = "Yes, the tool is completely free and works directly in the browser.";
@@ -1210,6 +1281,7 @@
         document.getElementById("contactPageLink").innerText = "Contact";
         document.getElementById("privacyPageLink").innerText = "Privacy";
         document.getElementById("termsPageLink").innerText = "Terms";
+        document.getElementById("articlesPageLink").innerText = "Articles";
 
         document.getElementById("sheetTitle").innerText = "Choose Birth Date";
         document.getElementById("dayLabel").innerText = "Day";
@@ -1222,6 +1294,7 @@
         document.getElementById("contactLink").innerText = "Contact";
         document.getElementById("privacyLink").innerText = "Privacy";
         document.getElementById("termsLink").innerText = "Terms";
+        document.getElementById("articlesFooterLink").innerText = "Articles";
         document.getElementById("footerNote").innerText = "This website provides a free tool to calculate age and related statistics in a simple and fast way. By using the website, you agree to the legal pages linked above.";
       } else {
         currentLang = "ar";
@@ -1234,6 +1307,7 @@
         document.getElementById("heroText").innerText = "احسب عمرك بدقة بطريقة سهلة وسريعة، وتعرّف على عمرك الميلادي والهجري وعدد الساعات التي عشتها وبعض الإحصائيات المفيدة الأخرى من خلال واجهة بسيطة تدعم العربية والإنجليزية.";
         document.getElementById("quickCalc").innerText = "ابدأ الحساب";
         document.getElementById("quickHow").innerText = "طريقة الاستخدام";
+        document.getElementById("quickArticles").innerText = "المقالات";
         document.getElementById("quickFaq").innerText = "الأسئلة الشائعة";
 
         document.getElementById("mainDesc").innerText = "اختر تاريخ ميلادك ثم فعّل الحسابات التي تريدها، وبعدها اضغط على احسب.";
@@ -1283,50 +1357,4 @@
         document.getElementById("readArticle1Link").innerText = "قراءة المقال";
 
         document.getElementById("readArticle2Title").innerText = "الفرق بين العمر الميلادي والهجري";
-        document.getElementById("readArticle2Text").innerText = "شرح بسيط للفرق بين التقويمين ولماذا قد يظهر اختلاف بين العمر الميلادي والعمر الهجري.";
-        document.getElementById("readArticle2Link").innerText = "قراءة المقال";
-
-        document.getElementById("readArticle3Title").innerText = "كيف يتم حساب العمر؟";
-        document.getElementById("readArticle3Text").innerText = "خطوات مبسطة لفهم طريقة حساب العمر من تاريخ الميلاد حتى اليوم الحالي.";
-        document.getElementById("readArticle3Link").innerText = "قراءة المقال";
-
-        document.getElementById("readTermsTitle").innerText = "شروط الاستخدام";
-        document.getElementById("readTermsText").innerText = "اطلع على الشروط العامة لاستخدام الموقع والخدمة المقدمة داخله وحدود المسؤولية.";
-        document.getElementById("readTermsLink").innerText = "قراءة الصفحة";
-
-        document.getElementById("faqTitle").innerText = "الأسئلة الشائعة";
-        document.getElementById("faq1q").innerText = "هل الأداة مجانية؟";
-        document.getElementById("faq1a").innerText = "نعم، الأداة مجانية ويمكن استخدامها مباشرة من المتصفح بدون تسجيل.";
-        document.getElementById("faq2q").innerText = "هل أحتاج إلى إنشاء حساب؟";
-        document.getElementById("faq2a").innerText = "لا، لا تحتاج إلى إنشاء حساب حتى تستخدم أداة حساب العمر.";
-        document.getElementById("faq3q").innerText = "هل النتائج دقيقة؟";
-        document.getElementById("faq3a").innerText = "النتائج الأساسية مثل العمر تعتمد على تاريخ الميلاد الذي تدخله، أما بعض الإحصائيات الأخرى فهي تقريبية لغرض الفائدة العامة.";
-        document.getElementById("faq4q").innerText = "هل الموقع يدعم الهاتف؟";
-        document.getElementById("faq4a").innerText = "نعم، تم تصميم الموقع ليعمل بشكل مناسب على الهواتف والأجهزة اللوحية وأجهزة الكمبيوتر.";
-
-        document.getElementById("aboutPageLink").innerText = "من نحن";
-        document.getElementById("contactPageLink").innerText = "اتصل بنا";
-        document.getElementById("privacyPageLink").innerText = "سياسة الخصوصية";
-        document.getElementById("termsPageLink").innerText = "شروط الاستخدام";
-
-        document.getElementById("sheetTitle").innerText = "اختر الميلاد";
-        document.getElementById("dayLabel").innerText = "اليوم";
-        document.getElementById("monthLabel").innerText = "الشهر";
-        document.getElementById("yearLabel").innerText = "السنة";
-        document.getElementById("confirmBtn").innerText = "تأكيد";
-        document.getElementById("cancelBtn").innerText = "إلغاء";
-
-        document.getElementById("aboutLink").innerText = "من نحن";
-        document.getElementById("contactLink").innerText = "اتصل بنا";
-        document.getElementById("privacyLink").innerText = "سياسة الخصوصية";
-        document.getElementById("termsLink").innerText = "شروط الاستخدام";
-        document.getElementById("footerNote").innerText = "هذا الموقع يوفر أداة مجانية لحساب العمر وبعض الإحصائيات المرتبطة به بطريقة سهلة وسريعة. باستخدامك للموقع فأنت توافق على الصفحات القانونية المعروضة أعلاه.";
-      }
-
-      if (!skipSave) saveState();
-    }
-
-    loadState();
-  </script>
-</body>
-  </html>
+        document.getElementById("readArticle2Text").innerText = "شرح بسيط للفرق بين التقويمين ولماذا قد يظهر اختلاف بين العمر الميلادي والع
