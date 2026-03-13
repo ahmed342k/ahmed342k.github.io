@@ -1,156 +1,340 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>سياسة الخصوصية | حساب العمر</title>
+  <title>سياسة الخصوصية | حساب العمر</title>
+  <meta name="description" content="سياسة الخصوصية الخاصة بموقع حساب العمر، وكيفية التعامل مع البيانات، وملفات تعريف الارتباط، والخدمات الإعلانية، وطريقة استخدام الموقع." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://ahmed342k.github.io/privacy.html" />
 
-<meta name="description" content="سياسة الخصوصية الخاصة بموقع حساب العمر وكيفية التعامل مع البيانات والإعلانات.">
+  <style>
+    *{
+      box-sizing:border-box;
+      -webkit-tap-highlight-color:transparent;
+      font-family:Arial,sans-serif;
+    }
 
-<style>
+    :root{
+      --bg1:#0b0d12;
+      --bg2:#12161d;
+      --text:#ffffff;
+      --sub:#cfd6df;
+      --card:rgba(255,255,255,0.05);
+      --border:rgba(255,255,255,0.14);
+      --shadow:0 20px 50px rgba(0,0,0,0.35);
+      --btn:rgba(255,255,255,0.08);
+      --btnBorder:rgba(255,255,255,0.12);
+      --soft:rgba(79,140,255,0.10);
+    }
 
-*{
-box-sizing:border-box;
--webkit-tap-highlight-color: transparent;
-}
+    body{
+      margin:0;
+      min-height:100vh;
+      color:var(--text);
+      background:
+        radial-gradient(circle at top right, rgba(79,140,255,0.16), transparent 30%),
+        radial-gradient(circle at top left, rgba(255,255,255,0.06), transparent 22%),
+        linear-gradient(180deg,var(--bg1),var(--bg2));
+    }
 
-:root{
---bg1:#0b0d12;
---bg2:#12161d;
---text:#ffffff;
---sub:#cfd6df;
---card:rgba(255,255,255,0.05);
---border:rgba(255,255,255,0.14);
---shadow:0 20px 50px rgba(0,0,0,0.35);
-}
+    .container{
+      max-width:760px;
+      margin:auto;
+      padding:24px 14px 40px;
+    }
 
-body{
-margin:0;
-min-height:100vh;
-font-family:Arial,sans-serif;
-color:var(--text);
-background:
-radial-gradient(circle at top right, rgba(79,140,255,0.16), transparent 30%),
-radial-gradient(circle at top left, rgba(255,255,255,0.06), transparent 22%),
-linear-gradient(180deg,var(--bg1),var(--bg2));
-}
+    .top-links{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:14px;
+    }
 
-.container{
-max-width:700px;
-margin:auto;
-padding:24px 14px 40px;
-}
+    .top-links a,
+    .back{
+      display:inline-block;
+      text-decoration:none;
+      color:var(--text);
+      background:var(--btn);
+      border:1px solid var(--btnBorder);
+      border-radius:16px;
+      padding:10px 14px;
+      font-size:16px;
+      box-shadow:var(--shadow);
+    }
 
-.box{
-background:var(--card);
-border:1px solid var(--border);
-border-radius:28px;
-padding:24px 18px;
-box-shadow:var(--shadow);
-}
+    .hero-box,
+    .box{
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:28px;
+      box-shadow:var(--shadow);
+    }
 
-h1{
-margin:0 0 18px;
-font-size:34px;
-text-align:center;
-}
+    .hero-box{
+      padding:24px 18px;
+      text-align:center;
+      margin-bottom:16px;
+    }
 
-.section{
-margin-top:20px;
-padding-top:18px;
-border-top:1px solid rgba(255,255,255,0.08);
-}
+    .hero-badge{
+      display:inline-block;
+      padding:8px 14px;
+      border-radius:999px;
+      background:var(--soft);
+      border:1px solid var(--btnBorder);
+      color:var(--text);
+      font-size:14px;
+      margin-bottom:12px;
+    }
 
-.section h2{
-margin:0 0 10px;
-font-size:22px;
-}
+    .hero-text{
+      margin:0;
+      color:var(--sub);
+      font-size:17px;
+      line-height:2;
+    }
 
-.section p{
-margin:0;
-color:var(--sub);
-font-size:17px;
-line-height:2;
-}
+    .box{
+      padding:24px 18px;
+    }
 
-.back{
-display:inline-block;
-margin-bottom:16px;
-text-decoration:none;
-color:white;
-font-size:20px;
-}
+    h1{
+      margin:0 0 14px;
+      font-size:34px;
+      text-align:center;
+      line-height:1.4;
+    }
 
-footer{
-margin-top:24px;
-padding:18px 12px;
-text-align:center;
-color:var(--sub);
-font-size:15px;
-}
+    .section{
+      margin-top:20px;
+      padding-top:18px;
+      border-top:1px solid rgba(255,255,255,0.08);
+    }
 
-footer a{
-color:var(--sub);
-text-decoration:none;
-margin:0 8px;
-}
+    .section h2{
+      margin:0 0 10px;
+      font-size:22px;
+      line-height:1.5;
+    }
 
-</style>
+    .section p{
+      margin:0;
+      color:var(--sub);
+      font-size:17px;
+      line-height:2;
+    }
+
+    .list{
+      margin:12px 0 0;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:10px;
+    }
+
+    .list li{
+      background:var(--btn);
+      border:1px solid var(--btnBorder);
+      border-radius:18px;
+      padding:14px;
+      color:var(--sub);
+      font-size:16px;
+      line-height:1.9;
+    }
+
+    footer{
+      margin-top:24px;
+      padding:18px 12px;
+      text-align:center;
+      color:var(--sub);
+      font-size:15px;
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+    }
+
+    footer a{
+      color:var(--sub);
+      text-decoration:none;
+      margin:0 8px;
+    }
+
+    .footer-note{
+      margin-top:10px;
+      line-height:1.9;
+      font-size:14px;
+    }
+
+    @media (max-width:640px){
+      h1{
+        font-size:29px;
+      }
+
+      .section h2{
+        font-size:20px;
+      }
+
+      .section p,
+      .hero-text{
+        font-size:16px;
+      }
+
+      .top-links{
+        flex-direction:column;
+      }
+
+      .top-links a,
+      .back{
+        width:100%;
+        text-align:center;
+      }
+    }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"WebPage",
+    "name":"سياسة الخصوصية",
+    "url":"https://ahmed342k.github.io/privacy.html",
+    "description":"سياسة الخصوصية الخاصة بموقع حساب العمر."
+  }
+  </script>
 </head>
 
 <body>
 
-<div class="container">
+  <div class="container">
 
-<a class="back" href="index.html">← الرجوع إلى الصفحة الرئيسية</a>
+    <div class="top-links">
+      <a href="index.html">الرئيسية</a>
+      <a href="about.html">من نحن</a>
+      <a href="contact.html">اتصل بنا</a>
+    </div>
 
-<div class="box">
+    <a class="back" href="index.html">← الرجوع إلى الصفحة الرئيسية</a>
 
-<h1>سياسة الخصوصية</h1>
+    <section class="hero-box">
+      <div class="hero-badge">الخصوصية واستخدام البيانات</div>
+      <h1>سياسة الخصوصية</h1>
+      <p class="hero-text">
+        توضح هذه الصفحة كيفية تعامل موقع حساب العمر مع المعلومات والبيانات وملفات تعريف الارتباط والخدمات الخارجية، وذلك بهدف تقديم تجربة واضحة وشفافة للمستخدم.
+      </p>
+    </section>
 
-<div class="section">
-<h2>جمع المعلومات</h2>
-<p>
-نحن لا نقوم بجمع أي معلومات شخصية من المستخدمين عند استخدام موقع حساب العمر.
-جميع العمليات الحسابية تتم مباشرة داخل المتصفح دون إرسال البيانات إلى خوادم خارجية.
-</p>
-</div>
+    <div class="box">
 
-<div class="section">
-<h2>الإعلانات</h2>
-<p>
-قد يستخدم الموقع خدمات إعلانية مثل Google AdSense لعرض الإعلانات.
-قد تستخدم هذه الخدمات ملفات تعريف الارتباط (Cookies) لعرض إعلانات أكثر ملاءمة للمستخدمين.
-</p>
-</div>
+      <div class="section">
+        <h2>مقدمة</h2>
+        <p>
+          نحن نهتم بخصوصية زوار موقع <strong>حساب العمر</strong> ونسعى إلى توضيح طريقة عمل الموقع بشكل مبسط. استخدامك للموقع يعني اطلاعك على هذه السياسة وموافقتك على ما ورد فيها ضمن حدود استخدامك العادي للموقع وخدماته.
+        </p>
+      </div>
 
-<div class="section">
-<h2>ملفات تعريف الارتباط</h2>
-<p>
-قد تستخدم بعض الخدمات الخارجية ملفات تعريف الارتباط لتحسين تجربة المستخدم
-ولتحليل كيفية استخدام الموقع.
-يمكنك تعطيل ملفات تعريف الارتباط من خلال إعدادات المتصفح الخاص بك.
-</p>
-</div>
+      <div class="section">
+        <h2>طبيعة عمل الموقع</h2>
+        <p>
+          موقع حساب العمر عبارة عن أداة تساعد المستخدم على حساب العمر وبعض الإحصائيات المرتبطة به من خلال إدخال تاريخ الميلاد. الوظائف الأساسية للموقع مصممة لتعمل بشكل مباشر داخل المتصفح لتسهيل الاستخدام وتسريع ظهور النتائج.
+        </p>
+      </div>
 
-<div class="section">
-<h2>استخدام الموقع</h2>
-<p>
-باستخدامك لهذا الموقع فإنك توافق على سياسة الخصوصية هذه.
-نحن نسعى دائماً لتقديم تجربة آمنة وبسيطة لجميع المستخدمين.
-</p>
-</div>
+      <div class="section">
+        <h2>جمع المعلومات</h2>
+        <p>
+          نحن لا نطلب من المستخدم إنشاء حساب عند استخدام الأداة الأساسية، ولا نطلب بيانات شخصية حساسة من أجل تشغيل حاسبة العمر. البيانات التي يدخلها المستخدم مثل تاريخ الميلاد تُستخدم لغرض الحساب وإظهار النتائج داخل الموقع.
+        </p>
+      </div>
 
-</div>
+      <div class="section">
+        <h2>تخزين البيانات داخل المتصفح</h2>
+        <p>
+          قد يقوم الموقع بحفظ بعض التفضيلات محلياً داخل متصفح المستخدم، مثل اللغة المختارة أو وضع العرض الليلي أو النهاري أو بعض خيارات الحساب، وذلك لتحسين تجربة الاستخدام عند العودة إلى الموقع. هذا النوع من التخزين يكون محلياً على جهاز المستخدم وليس بالضرورة تخزيناً على خادم خارجي.
+        </p>
+      </div>
 
-<footer>
-<a href="index.html">الرئيسية</a> |
-<a href="about.html">من نحن</a> |
-<a href="contact.html">اتصل بنا</a>
-</footer>
+      <div class="section">
+        <h2>ملفات تعريف الارتباط (Cookies)</h2>
+        <p>
+          قد تستخدم بعض الخدمات المرتبطة بالموقع أو الخدمات الخارجية ملفات تعريف الارتباط لتحسين الأداء أو فهم كيفية استخدام الموقع أو تقديم محتوى وإعلانات أكثر ملاءمة. يمكن للمستخدم التحكم في ملفات تعريف الارتباط أو تعطيلها من خلال إعدادات المتصفح الخاص به.
+        </p>
+      </div>
 
-</div>
+      <div class="section">
+        <h2>الخدمات الإعلانية</h2>
+        <p>
+          قد يستخدم الموقع خدمات إعلانية مثل Google AdSense لعرض الإعلانات. هذه الخدمات قد تعتمد على ملفات تعريف الارتباط أو تقنيات مشابهة من أجل عرض إعلانات مناسبة وتحسين تجربة الإعلانات وقياس الأداء. استخدامك للموقع يعني فهمك بأن بعض الأطراف الخارجية قد تطبق سياساتها الخاصة المتعلقة بالإعلانات والخصوصية.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>الخدمات الخارجية</h2>
+        <p>
+          قد يحتوي الموقع على روابط أو خدمات تابعة لأطراف خارجية. عند زيارة أي خدمة خارجية أو التفاعل معها، فإنك تخضع أيضاً لسياسات تلك الجهات وشروطها، ولذلك ننصح بمراجعة سياسات الخصوصية الخاصة بها عند الحاجة.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>استخدام المعلومات</h2>
+        <p>
+          يتم استخدام المعلومات أو التفضيلات التقنية المتعلقة بالموقع لتحسين تجربة المستخدم، وتسهيل عرض النتائج، والحفاظ على عمل بعض الخصائص بشكل أفضل، مثل تذكر اللغة أو الإعدادات المختارة أو تحسين الأداء العام للموقع.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>حماية المستخدم</h2>
+        <p>
+          نحن نسعى إلى تقديم تجربة آمنة وبسيطة داخل الموقع، لكن لا يمكن ضمان الأمان الكامل لأي خدمة على الإنترنت بنسبة مئة بالمئة. لذلك يُنصح دائماً باستخدام المتصفح بشكل آمن وتحديثه باستمرار وعدم مشاركة معلومات غير ضرورية في أي مواقع عامة.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>موافقة المستخدم</h2>
+        <p>
+          باستخدامك لهذا الموقع، فإنك توافق على سياسة الخصوصية هذه وعلى طريقة عمل الموقع كما هي موضحة في هذه الصفحة، بما في ذلك استخدام بعض التفضيلات المحلية أو ملفات تعريف الارتباط أو الخدمات الإعلانية إن وُجدت.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>التحديثات على السياسة</h2>
+        <p>
+          قد يتم تحديث سياسة الخصوصية من وقت إلى آخر عند تطوير الموقع أو إضافة خدمات جديدة أو تحسين طريقة عرض المعلومات. استمرارك في استخدام الموقع بعد أي تحديث يعني قبولك للصيغة الأحدث من هذه الصفحة.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>ملخص سريع</h2>
+        <ul class="list">
+          <li>الموقع لا يتطلب إنشاء حساب لاستخدام الأداة الأساسية.</li>
+          <li>قد يتم حفظ بعض الإعدادات محلياً داخل المتصفح لتحسين التجربة.</li>
+          <li>قد تُستخدم ملفات تعريف الارتباط أو خدمات إعلانية خارجية مثل Google AdSense.</li>
+          <li>يمكن للمستخدم التحكم في إعدادات الخصوصية وملفات الارتباط من خلال متصفحه.</li>
+          <li>استخدام الموقع يعني الموافقة على هذه السياسة.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>التواصل معنا</h2>
+        <p>
+          إذا كان لديك أي استفسار متعلق بسياسة الخصوصية أو طريقة عمل الموقع، يمكنك زيارة صفحة <a href="contact.html" style="color:var(--text);">اتصل بنا</a> للتواصل معنا، كما يمكنك مراجعة صفحة <a href="about.html" style="color:var(--text);">من نحن</a> لمعرفة المزيد عن الموقع.
+        </p>
+      </div>
+
+    </div>
+
+    <footer>
+      <a href="index.html">الرئيسية</a> |
+      <a href="about.html">من نحن</a> |
+      <a href="contact.html">اتصل بنا</a>
+      <div class="footer-note">
+        توضح هذه الصفحة طريقة تعامل موقع حساب العمر مع الخصوصية والبيانات والتفضيلات التقنية والخدمات الإعلانية.
+      </div>
+    </footer>
+
+  </div>
 
 </body>
 </html>
