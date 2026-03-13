@@ -4,12 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>من نحن | حساب العمر</title>
-  <meta name="description" content="تعرف على موقع حساب العمر، هدفه وطريقته في تقديم حساب العمر الميلادي والهجري بشكل بسيط وسريع." />
+  <meta name="description" content="تعرف على موقع حساب العمر، رسالته، طريقة عمله، الخدمات التي يقدمها، وكيف يساعد المستخدمين في حساب العمر الميلادي والهجري والإحصائيات المرتبطة بالعمر بسهولة." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://ahmed342k.github.io/about.html" />
 
   <style>
     *{
       box-sizing:border-box;
-      -webkit-tap-highlight-color: transparent;
+      -webkit-tap-highlight-color:transparent;
+      font-family:Arial,sans-serif;
     }
 
     :root{
@@ -24,12 +27,12 @@
       --card:rgba(255,255,255,0.05);
       --btn:rgba(255,255,255,0.08);
       --btnBorder:rgba(255,255,255,0.12);
+      --soft:rgba(79,140,255,0.10);
     }
 
     body{
       margin:0;
       min-height:100vh;
-      font-family:Arial,sans-serif;
       color:var(--text);
       background:
         radial-gradient(circle at top right, rgba(79,140,255,0.16), transparent 30%),
@@ -39,7 +42,7 @@
     }
 
     .container{
-      max-width:700px;
+      max-width:760px;
       margin:auto;
       padding:24px 14px 40px;
     }
@@ -50,6 +53,7 @@
       align-items:center;
       gap:10px;
       margin-bottom:14px;
+      flex-wrap:wrap;
     }
 
     .top-btn{
@@ -62,8 +66,8 @@
       font-size:15px;
       text-align:center;
       text-decoration:none;
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
       box-shadow:var(--shadow);
     }
 
@@ -72,23 +76,56 @@
       margin-bottom:16px;
       color:var(--text);
       text-decoration:none;
-      font-size:20px;
+      font-size:18px;
+      background:var(--btn);
+      border:1px solid var(--btnBorder);
+      border-radius:16px;
+      padding:10px 14px;
     }
 
+    .hero-box,
     .box{
       background:var(--card);
       border:1px solid var(--border);
       border-radius:28px;
-      padding:24px 18px;
       box-shadow:var(--shadow);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
+      backdrop-filter:blur(18px);
+      -webkit-backdrop-filter:blur(18px);
+    }
+
+    .hero-box{
+      padding:24px 18px;
+      margin-bottom:16px;
+      text-align:center;
+    }
+
+    .hero-badge{
+      display:inline-block;
+      padding:8px 14px;
+      border-radius:999px;
+      background:var(--soft);
+      border:1px solid var(--btnBorder);
+      color:var(--text);
+      font-size:14px;
+      margin-bottom:12px;
+    }
+
+    .box{
+      padding:24px 18px;
     }
 
     h1{
-      margin:0 0 14px;
+      margin:0 0 12px;
       font-size:34px;
       text-align:center;
+      line-height:1.4;
+    }
+
+    .hero-text{
+      color:var(--sub);
+      font-size:17px;
+      line-height:2;
+      margin:0;
     }
 
     .desc{
@@ -108,6 +145,7 @@
       margin:0 0 10px;
       font-size:23px;
       color:var(--text);
+      line-height:1.5;
     }
 
     .section p{
@@ -117,12 +155,62 @@
       line-height:2;
     }
 
+    .cards{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      margin-top:16px;
+    }
+
+    .card{
+      background:var(--btn);
+      border:1px solid var(--btnBorder);
+      border-radius:20px;
+      padding:16px;
+    }
+
+    .card h3{
+      margin:0 0 10px;
+      color:var(--text);
+      font-size:18px;
+      line-height:1.5;
+    }
+
+    .card p{
+      margin:0;
+      color:var(--sub);
+      font-size:15px;
+      line-height:1.9;
+    }
+
+    .list{
+      margin:12px 0 0;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:10px;
+    }
+
+    .list li{
+      background:var(--btn);
+      border:1px solid var(--btnBorder);
+      border-radius:18px;
+      padding:14px;
+      color:var(--sub);
+      font-size:16px;
+      line-height:1.9;
+    }
+
     footer{
       margin-top:24px;
       padding:18px 12px;
       text-align:center;
       color:var(--sub);
       font-size:15px;
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:24px;
+      box-shadow:var(--shadow);
     }
 
     footer a{
@@ -130,49 +218,150 @@
       text-decoration:none;
       margin:0 8px;
     }
+
+    .footer-note{
+      margin-top:10px;
+      line-height:1.9;
+      font-size:14px;
+    }
+
+    @media (max-width:640px){
+      .cards{
+        grid-template-columns:1fr;
+      }
+
+      h1{
+        font-size:29px;
+      }
+
+      .section h2{
+        font-size:21px;
+      }
+
+      .desc,
+      .section p,
+      .hero-text{
+        font-size:16px;
+      }
+
+      .top-bar{
+        flex-direction:column;
+        align-items:stretch;
+      }
+
+      .top-btn{
+        width:100%;
+      }
+    }
   </style>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"AboutPage",
+    "name":"من نحن",
+    "url":"https://ahmed342k.github.io/about.html",
+    "description":"صفحة تعريفية بموقع حساب العمر وخدماته وأهدافه."
+  }
+  </script>
 </head>
 <body>
 
   <div class="container">
 
     <div class="top-bar">
+      <a class="top-btn" href="index.html">الرئيسية</a>
       <a class="top-btn" href="contact.html">اتصل بنا</a>
-      <a class="top-btn" href="privacy.html">الخصوصية</a>
+      <a class="top-btn" href="privacy.html">سياسة الخصوصية</a>
     </div>
 
     <a class="back-btn" href="index.html">← الرجوع إلى الرئيسية</a>
 
-    <div class="box">
+    <section class="hero-box">
+      <div class="hero-badge">تعريف بالموقع وخدماته</div>
       <h1>من نحن</h1>
+      <p class="hero-text">
+        موقع <strong>حساب العمر</strong> هو موقع بسيط ومفيد تم تطويره لتقديم أداة سريعة تساعد المستخدمين على حساب العمر بطريقة واضحة وسهلة، مع عرض بعض الإحصائيات المرتبطة بالعمر مثل العمر الميلادي والعمر الهجري وعدد الساعات التي عاشها المستخدم وبعض القيم التقديرية الأخرى.
+      </p>
+    </section>
 
+    <div class="box">
       <div class="desc">
-        موقع <strong>حساب العمر</strong> هو أداة بسيطة وسريعة تساعدك على معرفة عمرك بالسنوات والأشهر والأيام،
-        مع عرض معلومات إضافية مثل العمر الهجري وبعض الحسابات التقريبية المفيدة بشكل واضح وسهل.
+        نهدف إلى توفير تجربة سهلة ومريحة لكل زائر يريد معرفة عمره أو الاطلاع على نتائج مرتبطة بتاريخ الميلاد بدون خطوات معقدة أو تسجيل حساب. تم تصميم الموقع ليعمل بشكل جيد على الهواتف وأجهزة الكمبيوتر مع واجهة واضحة وسريعة.
       </div>
 
       <div class="section">
         <h2>هدف الموقع</h2>
         <p>
-          هدفنا هو تقديم أداة سهلة الاستخدام تعمل بسرعة على الهاتف والكمبيوتر، وتمنح الزائر تجربة مريحة
-          لمعرفة عمره الميلادي والهجري مع واجهة جميلة وبسيطة.
+          هدفنا هو تقديم أداة عربية مفيدة وسريعة تساعد المستخدم على حساب عمره بشكل مباشر، مع عرض النتائج بطريقة مفهومة وسلسة. كما نسعى إلى تحسين تجربة الاستخدام باستمرار من خلال واجهة بسيطة ودعم اللغة العربية والإنجليزية.
         </p>
       </div>
 
       <div class="section">
         <h2>ماذا يقدم الموقع؟</h2>
         <p>
-          يقدم الموقع حساب العمر الميلادي، وحساب العمر الهجري بشكل تقريبي،
-          بالإضافة إلى بعض المعلومات الاختيارية مثل عدد ساعات النوم التقريبية،
-          وكمية الماء التي شربتها تقريباً، وعدد الوجبات التي تناولتها.
+          يقدم الموقع خدمة حساب العمر بالسنوات والأشهر والأيام، بالإضافة إلى حساب العمر الهجري وبعض الإحصائيات الاختيارية مثل عدد ساعات الحياة، وعدد رمضانات المستخدم، وعدد الصلوات التقديري، وبعض القيم التقريبية الأخرى التي تضيف فائدة وتجربة ممتعة.
+        </p>
+
+        <div class="cards">
+          <div class="card">
+            <h3>حساب العمر الميلادي</h3>
+            <p>يعرض عمرك اعتماداً على التاريخ الميلادي بشكل واضح وسريع.</p>
+          </div>
+
+          <div class="card">
+            <h3>حساب العمر الهجري</h3>
+            <p>يوفر تقديراً مناسباً للعمر بالتقويم الهجري لمن يهتم بهذا النوع من الحساب.</p>
+          </div>
+
+          <div class="card">
+            <h3>إحصائيات إضافية</h3>
+            <p>مثل ساعات الحياة وعدد رمضاناتك وبعض القيم التقريبية المفيدة.</p>
+          </div>
+
+          <div class="card">
+            <h3>واجهة سهلة</h3>
+            <p>تمت مراعاة البساطة والوضوح لتناسب مختلف المستخدمين والأجهزة.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>كيف يعمل الموقع؟</h2>
+        <p>
+          يعتمد الموقع على تاريخ الميلاد الذي يدخله المستخدم داخل الأداة، ثم يقوم بحساب النتائج المطلوبة وعرضها في صفحة النتائج. بعض النتائج الأساسية تعتمد على التاريخ بشكل مباشر، بينما بعض الإحصائيات الأخرى تكون تقريبية لغرض الفائدة العامة وتقديم تجربة أغنى للمستخدم.
         </p>
       </div>
 
       <div class="section">
-        <h2>سهولة الاستخدام</h2>
+        <h2>لماذا أنشأنا هذا الموقع؟</h2>
         <p>
-          كل ما عليك هو إدخال تاريخ الميلاد، ثم الضغط على زر الحساب،
-          وسيعرض لك الموقع النتائج بشكل مباشر وواضح دون خطوات معقدة.
+          كثير من أدوات حساب العمر تكون مزدحمة أو صعبة الاستخدام أو لا تدعم العربية بشكل جيد. لذلك تم إنشاء هذا الموقع ليكون خفيفاً، واضحاً، وسهل الاستخدام، مع اهتمام بالمظهر الحديث وسرعة الوصول إلى النتيجة.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>ما الذي يميز الموقع؟</h2>
+        <ul class="list">
+          <li>واجهة بسيطة مناسبة للهاتف والكمبيوتر.</li>
+          <li>دعم اللغة العربية والإنجليزية.</li>
+          <li>حسابات أساسية وإضافية داخل أداة واحدة.</li>
+          <li>سرعة في الاستخدام دون الحاجة إلى تسجيل.</li>
+          <li>صفحات واضحة للخصوصية والتواصل والمعلومات العامة.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>التطوير والتحسين</h2>
+        <p>
+          نعمل على تطوير الموقع وتحسين محتواه وتجربة الاستخدام بشكل مستمر، سواء من ناحية التصميم أو وضوح المعلومات أو دقة عرض النتائج. كما نرحب بالملاحظات والاقتراحات التي تساعد على جعل الموقع أفضل وأكثر فائدة للزوار.
+        </p>
+      </div>
+
+      <div class="section">
+        <h2>التواصل معنا</h2>
+        <p>
+          إذا كانت لديك ملاحظة أو استفسار أو اقتراح بخصوص الموقع أو طريقة عمل الأداة، يمكنك زيارة صفحة <a href="contact.html" style="color:var(--text);">اتصل بنا</a> للتواصل معنا. كما يمكنك مراجعة صفحة <a href="privacy.html" style="color:var(--text);">سياسة الخصوصية</a> لمعرفة كيفية التعامل مع المعلومات داخل الموقع.
         </p>
       </div>
     </div>
@@ -181,6 +370,9 @@
       <a href="index.html">الرئيسية</a> |
       <a href="contact.html">اتصل بنا</a> |
       <a href="privacy.html">سياسة الخصوصية</a>
+      <div class="footer-note">
+        صفحة من نحن توضح هدف موقع حساب العمر والخدمات التي يقدمها للزوار بشكل مختصر وواضح.
+      </div>
     </footer>
 
   </div>
