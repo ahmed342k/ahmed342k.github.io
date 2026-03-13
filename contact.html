@@ -3,33 +3,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>اتصل بنا | حساب العمر</title>
-  <meta name="description" content="تواصل معنا بخصوص موقع حساب العمر لأي استفسار أو ملاحظة أو اقتراح." />
+  <meta name="description" content="تواصل معنا بخصوص موقع حساب العمر لأي استفسار أو ملاحظة أو اقتراح يتعلق بالموقع أو الأداة أو تجربة الاستخدام." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://ahmed342k.github.io/contact.html" />
 
   <style>
     *{
       box-sizing:border-box;
-      -webkit-tap-highlight-color: transparent;
+      -webkit-tap-highlight-color:transparent;
+      font-family:Arial,sans-serif;
     }
 
     :root{
       --bg1:#0b0d12;
       --bg2:#12161d;
-      --glass:rgba(255,255,255,0.08);
       --border:rgba(255,255,255,0.14);
       --text:#ffffff;
       --sub:#cfd6df;
-      --blue:#4f8cff;
       --shadow:0 20px 50px rgba(0,0,0,0.35);
       --card:rgba(255,255,255,0.05);
       --btn:rgba(255,255,255,0.08);
       --btnBorder:rgba(255,255,255,0.12);
+      --soft:rgba(79,140,255,0.10);
+      --link:#8bb4ff;
     }
 
     body{
       margin:0;
       min-height:100vh;
-      font-family:Arial,sans-serif;
       color:var(--text);
       background:
         radial-gradient(circle at top right, rgba(79,140,255,0.16), transparent 30%),
@@ -39,7 +42,7 @@
     }
 
     .container{
-      max-width:700px;
+      max-width:760px;
       margin:auto;
       padding:24px 14px 40px;
     }
@@ -50,9 +53,12 @@
       align-items:center;
       gap:10px;
       margin-bottom:14px;
+      flex-wrap:wrap;
     }
 
-    .top-btn{
+    .top-btn,
+    .back-btn{
+      display:inline-block;
       min-width:120px;
       background:var(--btn);
       color:var(--text);
@@ -62,33 +68,56 @@
       font-size:15px;
       text-align:center;
       text-decoration:none;
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
       box-shadow:var(--shadow);
     }
 
     .back-btn{
-      display:inline-block;
       margin-bottom:16px;
-      color:var(--text);
-      text-decoration:none;
-      font-size:20px;
+      min-width:auto;
+      font-size:17px;
     }
 
+    .hero-box,
     .box{
       background:var(--card);
       border:1px solid var(--border);
       border-radius:28px;
-      padding:24px 18px;
       box-shadow:var(--shadow);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .hero-box{
+      padding:24px 18px;
+      text-align:center;
+      margin-bottom:16px;
+    }
+
+    .hero-badge{
+      display:inline-block;
+      padding:8px 14px;
+      border-radius:999px;
+      background:var(--soft);
+      border:1px solid var(--btnBorder);
+      color:var(--text);
+      font-size:14px;
+      margin-bottom:12px;
+    }
+
+    .hero-text{
+      color:var(--sub);
+      font-size:17px;
+      line-height:2;
+      margin:0;
+    }
+
+    .box{
+      padding:24px 18px;
     }
 
     h1{
       margin:0 0 14px;
       font-size:34px;
       text-align:center;
+      line-height:1.4;
     }
 
     .desc{
@@ -108,6 +137,7 @@
       margin:0 0 10px;
       font-size:23px;
       color:var(--text);
+      line-height:1.5;
     }
 
     .section p{
@@ -123,15 +153,62 @@
       background:rgba(255,255,255,0.08);
       border:1px solid rgba(255,255,255,0.12);
       border-radius:18px;
-      padding:14px;
+      padding:16px;
       text-align:center;
       font-size:18px;
       color:var(--text);
     }
 
     .email-box a{
-      color:#8bb4ff;
+      color:var(--link);
       text-decoration:none;
+      word-break:break-word;
+    }
+
+    .cards{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      margin-top:16px;
+    }
+
+    .card{
+      background:var(--btn);
+      border:1px solid var(--btnBorder);
+      border-radius:20px;
+      padding:16px;
+    }
+
+    .card h3{
+      margin:0 0 10px;
+      color:var(--text);
+      font-size:18px;
+      line-height:1.5;
+    }
+
+    .card p{
+      margin:0;
+      color:var(--sub);
+      font-size:15px;
+      line-height:1.9;
+    }
+
+    .list{
+      margin:12px 0 0;
+      padding:0;
+      list-style:none;
+      display:grid;
+      gap:10px;
+    }
+
+    .list li{
+      background:var(--btn);
+      border:1px solid var(--btnBorder);
+      border-radius:18px;
+      padding:14px;
+      color:var(--sub);
+      font-size:16px;
+      line-height:1.9;
     }
 
     footer{
@@ -140,6 +217,10 @@
       text-align:center;
       color:var(--sub);
       font-size:15px;
+      background:var(--card);
+      border:1px solid var(--border);
+      border-radius:24px;
+      box-shadow:var(--shadow);
     }
 
     footer a{
@@ -147,25 +228,77 @@
       text-decoration:none;
       margin:0 8px;
     }
+
+    .footer-note{
+      margin-top:10px;
+      line-height:1.9;
+      font-size:14px;
+    }
+
+    @media (max-width:640px){
+      .cards{
+        grid-template-columns:1fr;
+      }
+
+      .top-bar{
+        flex-direction:column;
+        align-items:stretch;
+      }
+
+      .top-btn,
+      .back-btn{
+        width:100%;
+      }
+
+      h1{
+        font-size:29px;
+      }
+
+      .section h2{
+        font-size:21px;
+      }
+
+      .desc,
+      .section p,
+      .hero-text{
+        font-size:16px;
+      }
+    }
   </style>
+
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"ContactPage",
+    "name":"اتصل بنا",
+    "url":"https://ahmed342k.github.io/contact.html",
+    "description":"صفحة التواصل الخاصة بموقع حساب العمر."
+  }
+  </script>
 </head>
 <body>
 
   <div class="container">
 
     <div class="top-bar">
+      <a class="top-btn" href="index.html">الرئيسية</a>
       <a class="top-btn" href="about.html">من نحن</a>
-      <a class="top-btn" href="privacy.html">الخصوصية</a>
+      <a class="top-btn" href="privacy.html">سياسة الخصوصية</a>
     </div>
 
     <a class="back-btn" href="index.html">← الرجوع إلى الرئيسية</a>
 
-    <div class="box">
+    <section class="hero-box">
+      <div class="hero-badge">التواصل والملاحظات</div>
       <h1>اتصل بنا</h1>
+      <p class="hero-text">
+        إذا كانت لديك أي ملاحظة أو استفسار أو اقتراح يتعلق بموقع حساب العمر أو طريقة عمل الأداة أو تجربة الاستخدام، يمكنك التواصل معنا عبر البريد الإلكتروني الموضح في هذه الصفحة.
+      </p>
+    </section>
 
+    <div class="box">
       <div class="desc">
-        إذا كانت لديك أي ملاحظة، استفسار، أو اقتراح لتحسين الموقع، يمكنك التواصل معنا عبر البريد الإلكتروني.
-        نحن نرحب دائماً بالملاحظات التي تساعد على تطوير الموقع وتحسين تجربة المستخدم.
+        نرحب دائماً بالملاحظات والاقتراحات التي تساعد على تطوير الموقع وتحسين الخدمات والمحتوى المعروض للزوار. كما يمكنك مراسلتنا عند وجود مشكلة تقنية أو ملاحظة تتعلق بالنتائج أو التصميم أو الصفحات العامة.
       </div>
 
       <div class="section">
@@ -180,10 +313,44 @@
       </div>
 
       <div class="section">
-        <h2>ملاحظات مهمة</h2>
+        <h2>متى يمكنك التواصل معنا؟</h2>
+        <div class="cards">
+          <div class="card">
+            <h3>استفسارات عامة</h3>
+            <p>إذا كان لديك سؤال عن طريقة استخدام الموقع أو كيفية حساب النتائج المعروضة.</p>
+          </div>
+
+          <div class="card">
+            <h3>مشكلة تقنية</h3>
+            <p>إذا واجهت خطأ في الصفحة أو مشكلة في عرض النتائج أو صعوبة في استخدام الأداة.</p>
+          </div>
+
+          <div class="card">
+            <h3>اقتراح تطوير</h3>
+            <p>إذا رغبت في اقتراح ميزة جديدة أو تحسين تصميم أو إضافة محتوى مفيد للموقع.</p>
+          </div>
+
+          <div class="card">
+            <h3>ملاحظات عامة</h3>
+            <p>إذا كانت لديك ملاحظة تساعد في تحسين تجربة المستخدم أو وضوح المعلومات.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>ملاحظات مهمة عند المراسلة</h2>
+        <ul class="list">
+          <li>يرجى كتابة موضوع الرسالة بشكل واضح.</li>
+          <li>اشرح المشكلة أو الاقتراح باختصار وبشكل مباشر.</li>
+          <li>إذا كانت المشكلة تقنية، اذكر الصفحة التي ظهرت فيها المشكلة.</li>
+          <li>سنحاول مراجعة الرسائل والرد عند الإمكان.</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>صفحات مفيدة</h2>
         <p>
-          يرجى كتابة رسالتك بشكل واضح، وسنحاول الرد في أقرب وقت ممكن.
-          كما يمكنك إرسال اقتراحات لإضافة ميزات جديدة أو تحسين شكل الموقع.
+          يمكنك أيضاً مراجعة صفحة <a href="about.html" style="color:var(--text);">من نحن</a> لمعرفة المزيد عن الموقع، أو صفحة <a href="privacy.html" style="color:var(--text);">سياسة الخصوصية</a> لفهم طريقة التعامل مع المعلومات والبيانات داخل الموقع.
         </p>
       </div>
     </div>
@@ -192,6 +359,9 @@
       <a href="index.html">الرئيسية</a> |
       <a href="about.html">من نحن</a> |
       <a href="privacy.html">سياسة الخصوصية</a>
+      <div class="footer-note">
+        صفحة اتصل بنا مخصصة لاستقبال الاستفسارات والملاحظات والاقتراحات المتعلقة بموقع حساب العمر.
+      </div>
     </footer>
 
   </div>
