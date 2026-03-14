@@ -67,10 +67,6 @@
       --softBlue:rgba(90,141,240,.12);
     }
 
-    html{
-      scroll-behavior:smooth;
-    }
-
     body{
       margin:0;
       min-height:100vh;
@@ -167,17 +163,6 @@
       pointer-events:none;
     }
 
-    .theme-toggle .moon,
-    .theme-toggle .sun{
-      transition:.2s ease;
-    }
-
-    .theme-toggle .moon{opacity:1;}
-    .theme-toggle .sun{opacity:.28;}
-
-    body.light-mode .theme-toggle .moon{opacity:.28;}
-    body.light-mode .theme-toggle .sun{opacity:1;}
-
     .theme-toggle::before{
       content:"";
       position:absolute;
@@ -209,9 +194,13 @@
     .hero-box{
       padding:22px 18px;
       margin-bottom:16px;
+      text-align:center;
     }
 
-    .box{
+    .box,
+    .info-section,
+    .faq-section,
+    .articles-section{
       padding:22px 16px;
       margin-bottom:16px;
     }
@@ -229,10 +218,6 @@
       margin:0 auto 14px;
     }
 
-    .hero-center{
-      text-align:center;
-    }
-
     h1{
       margin:0 0 10px;
       font-size:34px;
@@ -240,24 +225,26 @@
       line-height:1.35;
     }
 
-    .desc{
-      color:var(--sub);
-      font-size:17px;
-      line-height:1.8;
-      text-align:center;
-      margin-bottom:18px;
-    }
-
-    .hero-text{
+    .desc,
+    .hero-text,
+    .content-text{
       color:var(--sub);
       font-size:16px;
       line-height:1.9;
+    }
+
+    .desc,
+    .hero-text{
       text-align:center;
+    }
+
+    .hero-text{
       max-width:650px;
       margin:0 auto;
     }
 
-    .quick-links{
+    .quick-links,
+    .site-links{
       display:flex;
       flex-wrap:wrap;
       gap:10px;
@@ -265,7 +252,9 @@
       margin-top:18px;
     }
 
-    .quick-links a{
+    .quick-links a,
+    .site-links a,
+    .read-link{
       text-decoration:none;
       color:var(--text);
       background:var(--btn);
@@ -273,9 +262,11 @@
       border-radius:16px;
       padding:10px 14px;
       font-size:14px;
+      display:inline-block;
     }
 
-    .birth-btn{
+    .birth-btn,
+    .main-btn{
       width:100%;
       border:none;
       border-radius:20px;
@@ -284,9 +275,11 @@
       cursor:pointer;
       background:var(--blue);
       color:#fff;
-      margin-bottom:18px;
       box-shadow:var(--shadow);
     }
+
+    .birth-btn{ margin-bottom:18px; }
+    .main-btn{ font-size:20px; }
 
     .section-title{
       font-size:20px;
@@ -295,24 +288,32 @@
       text-align:right;
     }
 
-    .options-grid{
+    .options-grid,
+    .feature-grid,
+    .article-grid,
+    .faq-grid{
       display:grid;
       grid-template-columns:1fr 1fr;
-      gap:10px;
-      margin-bottom:18px;
+      gap:12px;
+      margin-top:14px;
     }
 
-    .option-card{
+    .option-card,
+    .feature-card,
+    .article-card,
+    .faq-card{
       background:var(--btn);
       border:1px solid var(--btnBorder);
       border-radius:20px;
-      padding:12px 12px;
+      padding:16px;
+    }
+
+    .option-card{
       min-height:74px;
       display:flex;
       align-items:center;
       justify-content:space-between;
       gap:10px;
-      box-shadow:0 4px 10px rgba(0,0,0,.06);
     }
 
     .option-label{
@@ -355,65 +356,6 @@
       transform:translateX(-20px);
     }
 
-    .main-btn{
-      width:100%;
-      border:none;
-      border-radius:20px;
-      padding:18px 16px;
-      font-size:20px;
-      cursor:pointer;
-      background:var(--blue);
-      color:#fff;
-      box-shadow:var(--shadow);
-    }
-
-    .error{
-      min-height:24px;
-      margin-top:12px;
-      color:var(--danger);
-      font-size:15px;
-      text-align:center;
-    }
-
-    .info-section,
-    .faq-section,
-    .articles-section{
-      padding:22px 18px;
-      margin-bottom:16px;
-    }
-
-    .content-title{
-      font-size:26px;
-      margin:0 0 14px;
-      color:var(--text);
-      line-height:1.5;
-    }
-
-    .content-text{
-      color:var(--sub);
-      font-size:16px;
-      line-height:2;
-      margin:0 0 14px;
-    }
-
-    .feature-grid,
-    .article-grid,
-    .faq-grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:12px;
-      margin-top:14px;
-    }
-
-    .feature-card,
-    .article-card,
-    .faq-card{
-      background:var(--btn);
-      border:1px solid var(--btnBorder);
-      border-radius:20px;
-      padding:16px;
-    }
-
     .feature-card h3,
     .article-card h3,
     .faq-card h3{
@@ -449,37 +391,14 @@
       line-height:1.9;
     }
 
-    .steps strong{
-      color:var(--text);
-    }
+    .steps strong{ color:var(--text); }
 
-    .site-links{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:16px;
-    }
-
-    .site-links a{
-      text-decoration:none;
-      color:var(--text);
-      background:var(--btn);
-      border:1px solid var(--btnBorder);
-      border-radius:16px;
-      padding:10px 14px;
-      font-size:14px;
-    }
-
-    .read-link{
-      display:inline-block;
+    .error{
+      min-height:24px;
       margin-top:12px;
-      color:var(--text);
-      text-decoration:none;
-      background:var(--softBlue);
-      border:1px solid var(--btnBorder);
-      border-radius:14px;
-      padding:9px 12px;
-      font-size:14px;
+      color:var(--danger);
+      font-size:15px;
+      text-align:center;
     }
 
     footer{
@@ -523,7 +442,7 @@
     .sheet{
       width:100%;
       max-width:620px;
-      background:rgba(18,22,29,.95);
+      background:rgba(18,22,29,.98);
       border:1px solid rgba(255,255,255,.1);
       border-radius:28px 28px 0 0;
       padding:18px 14px 24px;
@@ -563,9 +482,7 @@
       gap:10px;
     }
 
-    .picker-col{
-      flex:1;
-    }
+    .picker-col{ flex:1; }
 
     .picker-label{
       margin-bottom:8px;
@@ -632,74 +549,18 @@
         grid-template-columns:1fr;
       }
 
-      h1{
-        font-size:30px;
-      }
-
-      .content-title{
-        font-size:23px;
-      }
-
-      .brand-name{
-        font-size:19px;
-      }
-
-      .logo-text{
-        font-size:21px;
-      }
+      h1{ font-size:30px; }
+      .content-title{ font-size:23px; }
+      .brand-name{ font-size:19px; }
+      .logo-text{ font-size:21px; }
     }
   </style>
-
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"WebSite",
-    "name":"حساب العمر",
-    "url":"https://ahmed342k.github.io/",
-    "description":"أداة مجانية لحساب العمر الميلادي والهجري وعدد الساعات والصلوات ورمضاناتك.",
-    "inLanguage":["ar","en"]
-  }
-  </script>
-
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"FAQPage",
-    "mainEntity":[
-      {
-        "@type":"Question",
-        "name":"هل أداة حساب العمر مجانية؟",
-        "acceptedAnswer":{
-          "@type":"Answer",
-          "text":"نعم، الأداة مجانية بالكامل وتعمل مباشرة من المتصفح."
-        }
-      },
-      {
-        "@type":"Question",
-        "name":"هل يتم حفظ تاريخ الميلاد على الخادم؟",
-        "acceptedAnswer":{
-          "@type":"Answer",
-          "text":"يتم استخدام البيانات داخل المتصفح لتحسين التجربة، ويمكنك مراجعة صفحة سياسة الخصوصية لمعرفة التفاصيل."
-        }
-      },
-      {
-        "@type":"Question",
-        "name":"ماذا يمكنني حسابه في هذا الموقع؟",
-        "acceptedAnswer":{
-          "@type":"Answer",
-          "text":"يمكنك حساب العمر الميلادي والهجري وعدد الساعات التي عشتها والصلوات ورمضاناتك وبعض الإحصائيات التقريبية الأخرى."
-        }
-      }
-    ]
-  }
-  </script>
 </head>
 <body>
 
   <div class="container">
-
     <div class="top-bar">
-      <button class="mini-btn" id="langToggleBtn" onclick="toggleLanguage()">AR/EN</button>
+      <button class="mini-btn" id="langToggleBtn" type="button">AR/EN</button>
 
       <div class="brand-name logo-wrap">
         <span class="logo-icon" aria-hidden="true">
@@ -712,15 +573,15 @@
         <span class="logo-text">Noor</span>
       </div>
 
-      <button class="theme-toggle" id="themeToggleBtn" onclick="toggleTheme()" aria-label="theme">
+      <button class="theme-toggle" id="themeToggleBtn" type="button" aria-label="theme">
         <div class="icon-track">
-          <span class="moon">🌙</span>
-          <span class="sun">☀</span>
+          <span>🌙</span>
+          <span>☀</span>
         </div>
       </button>
     </div>
 
-    <section class="hero-box hero-center">
+    <section class="hero-box">
       <div class="hero-badge" id="heroBadge">أداة مجانية وسريعة لحساب العمر</div>
       <h1 id="mainTitle">حساب العمر</h1>
       <p class="hero-text" id="heroText">
@@ -736,80 +597,74 @@
     </section>
 
     <div class="box" id="calculatorSection">
-      <div id="startSection">
-        <div class="desc" id="mainDesc">
-          اختر تاريخ ميلادك ثم فعّل الحسابات التي تريدها، وبعدها اضغط على احسب.
-        </div>
-
-        <button class="birth-btn" id="birthButton" onclick="openBirthSheet()">اختر تاريخ الميلاد</button>
-
-        <div class="section-title" id="optionsMainTitle">اختر ما تريد حسابه</div>
-
-        <div class="options-grid">
-          <div class="option-card">
-            <div class="option-label" id="labelAge">العمر الميلادي</div>
-            <button class="switch-btn active" id="ageBtn" onclick="toggleOption('age')"></button>
-          </div>
-
-          <div class="option-card">
-            <div class="option-label" id="labelHijri">العمر الهجري</div>
-            <button class="switch-btn active" id="hijriBtn" onclick="toggleOption('hijri')"></button>
-          </div>
-
-          <div class="option-card">
-            <div class="option-label" id="labelWater">كمية الماء</div>
-            <button class="switch-btn" id="waterBtn" onclick="toggleOption('water')"></button>
-          </div>
-
-          <div class="option-card">
-            <div class="option-label" id="labelSleep">ساعات النوم</div>
-            <button class="switch-btn" id="sleepBtn" onclick="toggleOption('sleep')"></button>
-          </div>
-
-          <div class="option-card">
-            <div class="option-label" id="labelMeals">عدد الوجبات</div>
-            <button class="switch-btn" id="mealsBtn" onclick="toggleOption('meals')"></button>
-          </div>
-
-          <div class="option-card">
-            <div class="option-label" id="labelRamadan">عدد رمضاناتك</div>
-            <button class="switch-btn" id="ramadanBtn" onclick="toggleOption('ramadan')"></button>
-          </div>
-
-          <div class="option-card">
-            <div class="option-label" id="labelPrayers">عدد الصلوات</div>
-            <button class="switch-btn" id="prayersBtn" onclick="toggleOption('prayers')"></button>
-          </div>
-
-          <div class="option-card">
-            <div class="option-label" id="labelHours">كم ساعة عشت</div>
-            <button class="switch-btn" id="hoursBtn" onclick="toggleOption('hours')"></button>
-          </div>
-
-          <div class="option-card">
-            <div class="option-label" id="labelHeartbeat">نبضات القلب</div>
-            <button class="switch-btn" id="heartbeatBtn" onclick="toggleOption('heartbeat')"></button>
-          </div>
-        </div>
-
-        <button class="main-btn" id="calcBtn" onclick="calculateAge()">احسب</button>
-        <div class="error" id="error"></div>
+      <div class="desc" id="mainDesc">
+        اختر تاريخ ميلادك ثم فعّل الحسابات التي تريدها، وبعدها اضغط على احسب.
       </div>
+
+      <button class="birth-btn" id="birthButton" type="button">اختر تاريخ الميلاد</button>
+
+      <div class="section-title" id="optionsMainTitle">اختر ما تريد حسابه</div>
+
+      <div class="options-grid">
+        <div class="option-card">
+          <div class="option-label" id="labelAge">العمر الميلادي</div>
+          <button class="switch-btn active" id="ageBtn" type="button"></button>
+        </div>
+
+        <div class="option-card">
+          <div class="option-label" id="labelHijri">العمر الهجري</div>
+          <button class="switch-btn active" id="hijriBtn" type="button"></button>
+        </div>
+
+        <div class="option-card">
+          <div class="option-label" id="labelWater">كمية الماء</div>
+          <button class="switch-btn" id="waterBtn" type="button"></button>
+        </div>
+
+        <div class="option-card">
+          <div class="option-label" id="labelSleep">ساعات النوم</div>
+          <button class="switch-btn" id="sleepBtn" type="button"></button>
+        </div>
+
+        <div class="option-card">
+          <div class="option-label" id="labelMeals">عدد الوجبات</div>
+          <button class="switch-btn" id="mealsBtn" type="button"></button>
+        </div>
+
+        <div class="option-card">
+          <div class="option-label" id="labelRamadan">عدد رمضاناتك</div>
+          <button class="switch-btn" id="ramadanBtn" type="button"></button>
+        </div>
+
+        <div class="option-card">
+          <div class="option-label" id="labelPrayers">عدد الصلوات</div>
+          <button class="switch-btn" id="prayersBtn" type="button"></button>
+        </div>
+
+        <div class="option-card">
+          <div class="option-label" id="labelHours">كم ساعة عشت</div>
+          <button class="switch-btn" id="hoursBtn" type="button"></button>
+        </div>
+
+        <div class="option-card">
+          <div class="option-label" id="labelHeartbeat">نبضات القلب</div>
+          <button class="switch-btn" id="heartbeatBtn" type="button"></button>
+        </div>
+      </div>
+
+      <button class="main-btn" id="calcBtn" type="button">احسب</button>
+      <div class="error" id="error"></div>
     </div>
 
     <section class="info-section" id="howItWorks">
       <h2 class="content-title" id="howTitle">ما هي أداة حساب العمر؟</h2>
-      <p class="content-text" id="howText1">
-        أداة حساب العمر هي خدمة مجانية عبر المتصفح تساعدك على معرفة عمرك الحالي اعتماداً على تاريخ الميلاد. لا تحتاج إلى تنزيل تطبيق أو إنشاء حساب، فقط أدخل التاريخ واختر نوع النتائج التي تريدها.
-      </p>
-      <p class="content-text" id="howText2">
-        الموقع مناسب لمن يريد حساب العمر الميلادي والهجري بسرعة، ومعرفة عدد الساعات التي عاشها، وعدد رمضاناته، وبعض الإحصائيات اليومية التقريبية بشكل واضح وسهل.
-      </p>
+      <p class="content-text" id="howText1">أداة حساب العمر هي خدمة مجانية عبر المتصفح تساعدك على معرفة عمرك الحالي اعتماداً على تاريخ الميلاد.</p>
+      <p class="content-text" id="howText2">الموقع مناسب لمن يريد حساب العمر الميلادي والهجري بسرعة ومعرفة بعض الإحصائيات اليومية التقريبية بشكل واضح.</p>
 
       <div class="feature-grid">
         <div class="feature-card">
           <h3 id="feature1Title">حسابات متنوعة</h3>
-          <p id="feature1Text">يمكنك اختيار النتائج التي تريدها فقط، مثل العمر الميلادي والهجري وساعات حياتك والصلوات وعدد رمضاناتك.</p>
+          <p id="feature1Text">يمكنك اختيار النتائج التي تريدها فقط، مثل العمر الميلادي والهجري وساعات حياتك.</p>
         </div>
 
         <div class="feature-card">
@@ -824,7 +679,7 @@
 
         <div class="feature-card">
           <h3 id="feature4Title">استخدام سريع</h3>
-          <p id="feature4Text">لا تحتاج إلى خطوات معقدة. اختر تاريخ الميلاد وحدد الحسابات المطلوبة ثم اضغط على زر احسب.</p>
+          <p id="feature4Text">اختر تاريخ الميلاد وحدد الحسابات المطلوبة ثم اضغط على زر احسب.</p>
         </div>
       </div>
     </section>
@@ -837,78 +692,6 @@
         <li id="step3"><strong>3.</strong> اضغط على زر احسب للانتقال إلى صفحة النتائج.</li>
         <li id="step4"><strong>4.</strong> راجع النتائج الظاهرة مثل العمر الميلادي والهجري وعدد الساعات والإحصائيات الأخرى.</li>
       </ul>
-
-      <div class="article-grid">
-        <div class="article-card">
-          <h3 id="article1Title">لماذا قد تحتاج لحساب العمر؟</h3>
-          <p id="article1Text">حساب العمر مفيد في المناسبات الشخصية، والتخطيط الدراسي، ومعرفة الفروقات بين التاريخ الميلادي والهجري، ومتابعة العمر الزمني بشكل سريع.</p>
-        </div>
-
-        <div class="article-card">
-          <h3 id="article2Title">العمر الميلادي والعمر الهجري</h3>
-          <p id="article2Text">بعض المستخدمين يفضلون معرفة أعمارهم بالتقويم الميلادي، بينما يهتم آخرون بالتقويم الهجري، لذلك تم توفير الخيارين داخل الموقع.</p>
-        </div>
-
-        <div class="article-card">
-          <h3 id="article3Title">إحصائيات تقريبية مفيدة</h3>
-          <p id="article3Text">يعرض الموقع بعض القيم التقديرية مثل ساعات النوم وكمية الماء وعدد الوجبات والصلوات، وذلك لتقديم تجربة ممتعة وغنية بالمعلومات.</p>
-        </div>
-
-        <div class="article-card">
-          <h3 id="article4Title">موقع خفيف وسهل</h3>
-          <p id="article4Text">تم تطوير الموقع ليكون خفيفاً وسريع التحميل حتى يعمل بشكل جيد على الأجهزة المختلفة وخصوصاً الهواتف المحمولة.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="articles-section" id="articlesInfoSection">
-      <h2 class="content-title" id="articlesInfoTitle">مقالات ومعلومات مفيدة</h2>
-
-      <div class="article-grid">
-        <div class="article-card">
-          <h3 id="readArticle1Title">ما هو حساب العمر؟</h3>
-          <p id="readArticle1Text">تعرف على معنى حساب العمر ولماذا يستخدمه الناس وما الذي يمكن معرفته من خلال أدوات حساب العمر الحديثة.</p>
-          <a href="article-1.html" class="read-link" id="readArticle1Link">قراءة المقال</a>
-        </div>
-
-        <div class="article-card">
-          <h3 id="readArticle2Title">الفرق بين العمر الميلادي والهجري</h3>
-          <p id="readArticle2Text">شرح بسيط للفرق بين التقويمين ولماذا قد يظهر اختلاف بين العمر الميلادي والعمر الهجري.</p>
-          <a href="article-2.html" class="read-link" id="readArticle2Link">قراءة المقال</a>
-        </div>
-
-        <div class="article-card">
-          <h3 id="readArticle3Title">كيف يتم حساب العمر؟</h3>
-          <p id="readArticle3Text">خطوات مبسطة لفهم طريقة حساب العمر من تاريخ الميلاد حتى اليوم الحالي.</p>
-          <a href="article-3.html" class="read-link" id="readArticle3Link">قراءة المقال</a>
-        </div>
-
-        <div class="article-card">
-          <h3 id="readTermsTitle">شروط الاستخدام</h3>
-          <p id="readTermsText">اطلع على الشروط العامة لاستخدام الموقع والخدمة المقدمة داخله وحدود المسؤولية.</p>
-          <a href="terms.html" class="read-link" id="readTermsLink">قراءة الصفحة</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="articles-section" id="articlesHubSection">
-      <h2 class="content-title" id="articlesHubTitle">مكتبة المقالات</h2>
-      <p class="content-text" id="articlesHubText">
-        تصفح مقالات مفيدة حول حساب العمر، الفرق بين العمر الميلادي والهجري، وطريقة الحساب الدقيقة، مع شروحات مبسطة تساعد على فهم النتائج بشكل أفضل.
-      </p>
-
-      <div class="article-grid">
-        <div class="article-card">
-          <h3 id="articlesHubCard1Title">15 مقال مفيد</h3>
-          <p id="articlesHubCard1Text">مجموعة مقالات مهيأة لمحركات البحث لتقوية ظهور الموقع وزيادة المحتوى المفيد للزوار.</p>
-        </div>
-
-        <div class="article-card">
-          <h3 id="articlesHubCard2Title">صفحة مقالات رئيسية</h3>
-          <p id="articlesHubCard2Text">يمكنك الدخول إلى صفحة المقالات وقراءة جميع المواضيع الجديدة من مكان واحد.</p>
-          <a href="articles.html" class="read-link" id="articlesHubLink">فتح صفحة المقالات</a>
-        </div>
-      </div>
     </section>
 
     <section class="faq-section" id="faqSection">
@@ -927,7 +710,7 @@
 
         <div class="faq-card">
           <h3 id="faq3q">هل النتائج دقيقة؟</h3>
-          <p id="faq3a">النتائج الأساسية مثل العمر تعتمد على تاريخ الميلاد الذي تدخله، أما بعض الإحصائيات الأخرى فهي تقريبية لغرض الفائدة العامة.</p>
+          <p id="faq3a">النتائج الأساسية تعتمد على تاريخ الميلاد الذي تدخله، أما بعض الإحصائيات الأخرى فهي تقريبية.</p>
         </div>
 
         <div class="faq-card">
@@ -954,7 +737,7 @@
         <a href="articles.html" id="articlesFooterLink">المقالات</a>
       </div>
       <div class="footer-note" id="footerNote">
-        هذا الموقع يوفر أداة مجانية لحساب العمر وبعض الإحصائيات المرتبطة به بطريقة سهلة وسريعة. باستخدامك للموقع فأنت توافق على الصفحات القانونية المعروضة أعلاه.
+        هذا الموقع يوفر أداة مجانية لحساب العمر وبعض الإحصائيات المرتبطة به بطريقة سهلة وسريعة.
       </div>
     </footer>
   </div>
@@ -962,9 +745,9 @@
   <div class="sheet-overlay" id="birthSheet">
     <div class="sheet">
       <div class="sheet-header">
-        <button class="sheet-icon" onclick="closeBirthSheet()">✕</button>
+        <button class="sheet-icon" id="closeSheetBtn" type="button">✕</button>
         <div class="sheet-title" id="sheetTitle">اختر الميلاد</div>
-        <button class="sheet-icon" onclick="confirmBirthDate()">✓</button>
+        <button class="sheet-icon" id="okTopBtn" type="button">✓</button>
       </div>
 
       <div class="picker-wrap">
@@ -987,8 +770,8 @@
       <div id="dateError" class="date-error"></div>
 
       <div class="sheet-actions">
-        <button class="sheet-confirm" id="confirmBtn" onclick="confirmBirthDate()">تأكيد</button>
-        <button class="sheet-cancel" id="cancelBtn" onclick="closeBirthSheet()">إلغاء</button>
+        <button class="sheet-confirm" id="confirmBtn" type="button">تأكيد</button>
+        <button class="sheet-cancel" id="cancelBtn" type="button">إلغاء</button>
       </div>
     </div>
   </div>
@@ -999,16 +782,22 @@
     let selectedYear = "";
     let currentLang = "ar";
 
-    let ageOn = true;
-    let hijriOn = true;
-    let waterOn = false;
-    let sleepOn = false;
-    let mealsOn = false;
-    let ramadanOn = false;
-    let prayersOn = false;
-    let hoursOn = false;
-    let heartbeatOn = false;
+    let optionsState = {
+      age: true,
+      hijri: true,
+      water: false,
+      sleep: false,
+      meals: false,
+      ramadan: false,
+      prayers: false,
+      hours: false,
+      heartbeat: false
+    };
 
+    const birthSheet = document.getElementById("birthSheet");
+    const birthButton = document.getElementById("birthButton");
+    const errorBox = document.getElementById("error");
+    const dateError = document.getElementById("dateError");
     const dayPicker = document.getElementById("dayPicker");
     const monthPicker = document.getElementById("monthPicker");
     const yearPicker = document.getElementById("yearPicker");
@@ -1019,15 +808,7 @@
         selectedMonth,
         selectedYear,
         currentLang,
-        ageOn,
-        hijriOn,
-        waterOn,
-        sleepOn,
-        mealsOn,
-        ramadanOn,
-        prayersOn,
-        hoursOn,
-        heartbeatOn,
+        optionsState,
         theme: document.body.classList.contains("light-mode") ? "light" : "dark"
       }));
     }
@@ -1044,149 +825,114 @@
       selectedYear = saved.selectedYear || "";
       currentLang = saved.currentLang || "ar";
 
-      ageOn = saved.ageOn ?? true;
-      hijriOn = saved.hijriOn ?? true;
-      waterOn = saved.waterOn ?? false;
-      sleepOn = saved.sleepOn ?? false;
-      mealsOn = saved.mealsOn ?? false;
-      ramadanOn = saved.ramadanOn ?? false;
-      prayersOn = saved.prayersOn ?? false;
-      hoursOn = saved.hoursOn ?? false;
-      heartbeatOn = saved.heartbeatOn ?? false;
+      if (saved.optionsState) {
+        optionsState = {
+          ...optionsState,
+          ...saved.optionsState
+        };
+      }
 
-      const setBtn = (id, val) => {
-        const el = document.getElementById(id);
-        if (el) el.classList.toggle("active", val);
-      };
-
-      setBtn("ageBtn", ageOn);
-      setBtn("hijriBtn", hijriOn);
-      setBtn("waterBtn", waterOn);
-      setBtn("sleepBtn", sleepOn);
-      setBtn("mealsBtn", mealsOn);
-      setBtn("ramadanBtn", ramadanOn);
-      setBtn("prayersBtn", prayersOn);
-      setBtn("hoursBtn", hoursOn);
-      setBtn("heartbeatBtn", heartbeatOn);
+      syncOptionButtons();
 
       if (selectedDay && selectedMonth && selectedYear) {
         dayPicker.value = selectedDay;
         monthPicker.value = selectedMonth;
         yearPicker.value = selectedYear;
-        document.getElementById("birthButton").innerText =
-          currentLang === "ar"
-            ? `${selectedYear}/${selectedMonth}/${selectedDay}`
-            : `${selectedDay}/${selectedMonth}/${selectedYear}`;
+        updateBirthButtonText();
       }
 
       if (currentLang === "en") {
-        toggleLanguage(true);
+        applyEnglishTexts();
+      } else {
+        applyArabicTexts();
       }
     }
 
-    function openBirthSheet() {
-      document.getElementById("birthSheet").style.display = "flex";
+    function syncOptionButtons() {
+      document.getElementById("ageBtn").classList.toggle("active", optionsState.age);
+      document.getElementById("hijriBtn").classList.toggle("active", optionsState.hijri);
+      document.getElementById("waterBtn").classList.toggle("active", optionsState.water);
+      document.getElementById("sleepBtn").classList.toggle("active", optionsState.sleep);
+      document.getElementById("mealsBtn").classList.toggle("active", optionsState.meals);
+      document.getElementById("ramadanBtn").classList.toggle("active", optionsState.ramadan);
+      document.getElementById("prayersBtn").classList.toggle("active", optionsState.prayers);
+      document.getElementById("hoursBtn").classList.toggle("active", optionsState.hours);
+      document.getElementById("heartbeatBtn").classList.toggle("active", optionsState.heartbeat);
     }
 
-    function closeBirthSheet() {
-      document.getElementById("birthSheet").style.display = "none";
-      clearDateError();
+    function updateBirthButtonText() {
+      if (!selectedDay || !selectedMonth || !selectedYear) {
+        birthButton.textContent = currentLang === "ar" ? "اختر تاريخ الميلاد" : "Choose birth date";
+        return;
+      }
+
+      birthButton.textContent =
+        currentLang === "ar"
+          ? `${selectedYear}/${selectedMonth}/${selectedDay}`
+          : `${selectedDay}/${selectedMonth}/${selectedYear}`;
     }
 
     function clearDateError() {
-      document.getElementById("dateError").innerText = "";
+      dateError.textContent = "";
       dayPicker.classList.remove("error-field");
       monthPicker.classList.remove("error-field");
       yearPicker.classList.remove("error-field");
     }
 
-    function markFieldError(field, message) {
+    function openBirthSheet() {
+      birthSheet.style.display = "flex";
       clearDateError();
-      document.getElementById("dateError").innerText = message;
-      field.classList.add("error-field");
+    }
+
+    function closeBirthSheet() {
+      birthSheet.style.display = "none";
+      clearDateError();
     }
 
     function confirmBirthDate() {
-      const errorBox = document.getElementById("dateError");
       clearDateError();
 
-      selectedDay = dayPicker.value.trim();
-      selectedMonth = monthPicker.value.trim();
-      selectedYear = yearPicker.value.trim();
+      const d = Number(dayPicker.value.trim());
+      const m = Number(monthPicker.value.trim());
+      const y = Number(yearPicker.value.trim());
+      const thisYear = new Date().getFullYear();
 
-      if (!selectedDay || !selectedMonth || !selectedYear) {
-        errorBox.innerText = currentLang === "ar" ? "يرجى إدخال اليوم والشهر والسنة" : "Please enter day, month, and year";
+      if (!dayPicker.value.trim() || !monthPicker.value.trim() || !yearPicker.value.trim()) {
+        dateError.textContent = currentLang === "ar" ? "يرجى إدخال اليوم والشهر والسنة" : "Please enter day, month, and year";
         return;
       }
 
-      const d = Number(selectedDay);
-      const m = Number(selectedMonth);
-      const y = Number(selectedYear);
-      const thisYear = new Date().getFullYear();
-
       if (isNaN(d) || d < 1 || d > 31) {
-        markFieldError(dayPicker, currentLang === "ar" ? "اليوم بين 1 و 31" : "Day must be 1-31");
+        dayPicker.classList.add("error-field");
+        dateError.textContent = currentLang === "ar" ? "اليوم بين 1 و 31" : "Day must be 1-31";
         return;
       }
 
       if (isNaN(m) || m < 1 || m > 12) {
-        markFieldError(monthPicker, currentLang === "ar" ? "الشهر بين 1 و 12" : "Month must be 1-12");
+        monthPicker.classList.add("error-field");
+        dateError.textContent = currentLang === "ar" ? "الشهر بين 1 و 12" : "Month must be 1-12";
         return;
       }
 
       if (isNaN(y) || y < 1900 || y > thisYear) {
-        markFieldError(yearPicker, currentLang === "ar" ? "السنة غير صحيحة" : "Invalid year");
+        yearPicker.classList.add("error-field");
+        dateError.textContent = currentLang === "ar" ? "السنة غير صحيحة" : "Invalid year";
         return;
       }
 
       const testDate = new Date(y, m - 1, d);
       if (testDate.getFullYear() !== y || testDate.getMonth() !== m - 1 || testDate.getDate() !== d) {
-        errorBox.innerText = currentLang === "ar" ? "تاريخ غير صحيح" : "Invalid date";
+        dateError.textContent = currentLang === "ar" ? "تاريخ غير صحيح" : "Invalid date";
         return;
       }
 
-      document.getElementById("birthButton").innerText =
-        currentLang === "ar" ? `${y}/${m}/${d}` : `${d}/${m}/${y}`;
+      selectedDay = String(d);
+      selectedMonth = String(m);
+      selectedYear = String(y);
 
+      updateBirthButtonText();
       saveState();
       closeBirthSheet();
-    }
-
-    function toggleOption(type) {
-      if (type === "age") ageOn = !ageOn;
-      if (type === "hijri") hijriOn = !hijriOn;
-      if (type === "water") waterOn = !waterOn;
-      if (type === "sleep") sleepOn = !sleepOn;
-      if (type === "meals") mealsOn = !mealsOn;
-      if (type === "ramadan") ramadanOn = !ramadanOn;
-      if (type === "prayers") prayersOn = !prayersOn;
-      if (type === "hours") hoursOn = !hoursOn;
-      if (type === "heartbeat") heartbeatOn = !heartbeatOn;
-
-      document.getElementById("ageBtn").classList.toggle("active", ageOn);
-      document.getElementById("hijriBtn").classList.toggle("active", hijriOn);
-      document.getElementById("waterBtn").classList.toggle("active", waterOn);
-      document.getElementById("sleepBtn").classList.toggle("active", sleepOn);
-      document.getElementById("mealsBtn").classList.toggle("active", mealsOn);
-      document.getElementById("ramadanBtn").classList.toggle("active", ramadanOn);
-      document.getElementById("prayersBtn").classList.toggle("active", prayersOn);
-      document.getElementById("hoursBtn").classList.toggle("active", hoursOn);
-      document.getElementById("heartbeatBtn").classList.toggle("active", heartbeatOn);
-
-      saveState();
-    }
-
-    function calculateAge() {
-      const error = document.getElementById("error");
-      error.innerText = "";
-
-      if (!selectedDay || !selectedMonth || !selectedYear) {
-        error.innerText = currentLang === "ar" ? "يرجى اختيار تاريخ الميلاد" : "Please choose your birth date";
-        return;
-      }
-
-      saveState();
-      window.location.href = "result.html";
     }
 
     function toggleTheme() {
@@ -1194,168 +940,208 @@
       saveState();
     }
 
-    function toggleLanguage(skipSave = false) {
-      clearDateError();
+    function toggleOption(key) {
+      optionsState[key] = !optionsState[key];
+      syncOptionButtons();
+      saveState();
+    }
 
-      if (currentLang === "ar") {
-        currentLang = "en";
-        document.documentElement.lang = "en";
-        document.documentElement.dir = "ltr";
+    function calculateAge() {
+      errorBox.textContent = "";
 
-        document.title = "Age Calculator | Calculate your age in Gregorian and Hijri";
-        document.getElementById("heroBadge").innerText = "Fast and free age calculator";
-        document.getElementById("mainTitle").innerText = "Age Calculator";
-        document.getElementById("heroText").innerText = "Calculate your age easily and quickly, and discover your Gregorian age, Hijri age, lived hours, and other useful statistics through a simple interface that supports Arabic and English.";
-        document.getElementById("quickCalc").innerText = "Start";
-        document.getElementById("quickHow").innerText = "How it works";
-        document.getElementById("quickArticles").innerText = "Articles";
-        document.getElementById("quickFaq").innerText = "FAQ";
+      if (!selectedDay || !selectedMonth || !selectedYear) {
+        errorBox.textContent = currentLang === "ar" ? "يرجى اختيار تاريخ الميلاد" : "Please choose your birth date";
+        return;
+      }
 
-        document.getElementById("mainDesc").innerText = "Choose your birth date, enable the calculations you want, then press calculate.";
-        document.getElementById("birthButton").innerText = selectedDay ? `${selectedDay}/${selectedMonth}/${selectedYear}` : "Choose birth date";
-        document.getElementById("optionsMainTitle").innerText = "Choose what you want to calculate";
-        document.getElementById("labelAge").innerText = "Gregorian age";
-        document.getElementById("labelHijri").innerText = "Hijri age";
-        document.getElementById("labelWater").innerText = "Water amount";
-        document.getElementById("labelSleep").innerText = "Sleep hours";
-        document.getElementById("labelMeals").innerText = "Meals count";
-        document.getElementById("labelRamadan").innerText = "Ramadans";
-        document.getElementById("labelPrayers").innerText = "Prayers";
-        document.getElementById("labelHours").innerText = "Lived hours";
-        document.getElementById("labelHeartbeat").innerText = "Heart beats";
-        document.getElementById("calcBtn").innerText = "Calculate";
+      saveState();
+      window.location.href = "result.html";
+    }
 
-        document.getElementById("howTitle").innerText = "What is the age calculator tool?";
-        document.getElementById("howText1").innerText = "The age calculator is a free browser-based tool that helps you know your current age depending on your birth date. You do not need to download an app or create an account.";
-        document.getElementById("howText2").innerText = "The website is suitable for users who want to know their Gregorian and Hijri age quickly, in addition to lived hours, number of Ramadans, and other useful statistics.";
-        document.getElementById("feature1Title").innerText = "Multiple calculations";
-        document.getElementById("feature1Text").innerText = "You can choose only the results you want, such as Gregorian age, Hijri age, lived hours, prayers, and Ramadans.";
-        document.getElementById("feature2Title").innerText = "Simple interface";
-        document.getElementById("feature2Text").innerText = "The tool is designed to work easily on phones and computers with dark and light mode support.";
-        document.getElementById("feature3Title").innerText = "Two languages";
-        document.getElementById("feature3Text").innerText = "You can use the website in Arabic or English using the language button at the top.";
-        document.getElementById("feature4Title").innerText = "Fast use";
-        document.getElementById("feature4Text").innerText = "No complicated steps. Just choose your birth date, select the calculations you want, and press calculate.";
+    function applyEnglishTexts() {
+      document.documentElement.lang = "en";
+      document.documentElement.dir = "ltr";
+      document.title = "Age Calculator | Calculate your age in Gregorian and Hijri";
 
-        document.getElementById("guideTitle").innerText = "How to use the website";
-        document.getElementById("step1").innerHTML = "<strong>1.</strong> Choose your birth date from the custom picker.";
-        document.getElementById("step2").innerHTML = "<strong>2.</strong> Enable or disable the calculation types you want in the result page.";
-        document.getElementById("step3").innerHTML = "<strong>3.</strong> Press the calculate button to go to the result page.";
-        document.getElementById("step4").innerHTML = "<strong>4.</strong> Review results such as Gregorian age, Hijri age, lived hours, and other statistics.";
+      document.getElementById("heroBadge").textContent = "Fast and free age calculator";
+      document.getElementById("mainTitle").textContent = "Age Calculator";
+      document.getElementById("heroText").textContent = "Calculate your age easily and quickly, and discover your Gregorian age, Hijri age, lived hours, and other useful statistics through a simple interface that supports Arabic and English.";
+      document.getElementById("quickCalc").textContent = "Start";
+      document.getElementById("quickHow").textContent = "How it works";
+      document.getElementById("quickArticles").textContent = "Articles";
+      document.getElementById("quickFaq").textContent = "FAQ";
 
-        document.getElementById("article1Title").innerText = "Why calculate your age?";
-        document.getElementById("article1Text").innerText = "Age calculation is useful for personal milestones, planning, date comparisons, and quickly knowing your exact age.";
-        document.getElementById("article2Title").innerText = "Gregorian and Hijri age";
-        document.getElementById("article2Text").innerText = "Some users prefer their age in the Gregorian calendar while others care about the Hijri calendar, so both options are available.";
-        document.getElementById("article3Title").innerText = "Useful estimated statistics";
-        document.getElementById("article3Text").innerText = "The website shows some approximate values such as sleep hours, water amount, meals, and prayers to provide a richer experience.";
-        document.getElementById("article4Title").innerText = "Light and easy website";
-        document.getElementById("article4Text").innerText = "The website is built to be fast and lightweight on different devices, especially phones.";
+      document.getElementById("mainDesc").textContent = "Choose your birth date, enable the calculations you want, then press calculate.";
+      document.getElementById("optionsMainTitle").textContent = "Choose what you want to calculate";
+      document.getElementById("labelAge").textContent = "Gregorian age";
+      document.getElementById("labelHijri").textContent = "Hijri age";
+      document.getElementById("labelWater").textContent = "Water amount";
+      document.getElementById("labelSleep").textContent = "Sleep hours";
+      document.getElementById("labelMeals").textContent = "Meals count";
+      document.getElementById("labelRamadan").textContent = "Ramadans";
+      document.getElementById("labelPrayers").textContent = "Prayers";
+      document.getElementById("labelHours").textContent = "Lived hours";
+      document.getElementById("labelHeartbeat").textContent = "Heart beats";
+      document.getElementById("calcBtn").textContent = "Calculate";
 
-        document.getElementById("articlesInfoTitle").innerText = "Useful articles and pages";
-        document.getElementById("readArticle1Title").innerText = "What is age calculation?";
-        document.getElementById("readArticle1Text").innerText = "Learn the meaning of age calculation and why people use age tools online.";
-        document.getElementById("readArticle1Link").innerText = "Read article";
-        document.getElementById("readArticle2Title").innerText = "Difference between Gregorian and Hijri age";
-        document.getElementById("readArticle2Text").innerText = "A simple explanation of the difference between the two calendars and why the age may differ.";
-        document.getElementById("readArticle2Link").innerText = "Read article";
-        document.getElementById("readArticle3Title").innerText = "How is age calculated?";
-        document.getElementById("readArticle3Text").innerText = "Simple steps to understand how age is calculated from birth date to the current day.";
-        document.getElementById("readArticle3Link").innerText = "Read article";
-        document.getElementById("readTermsTitle").innerText = "Terms of use";
-        document.getElementById("readTermsText").innerText = "Read the general terms of using the website and the service provided inside it.";
-        document.getElementById("readTermsLink").innerText = "Read page";
+      document.getElementById("howTitle").textContent = "What is the age calculator tool?";
+      document.getElementById("howText1").textContent = "The age calculator is a free browser-based tool that helps you know your current age depending on your birth date.";
+      document.getElementById("howText2").textContent = "The website is suitable for users who want to know their Gregorian and Hijri age quickly and some estimated daily statistics clearly.";
+      document.getElementById("feature1Title").textContent = "Multiple calculations";
+      document.getElementById("feature1Text").textContent = "You can choose only the results you want, such as Gregorian age, Hijri age, and lived hours.";
+      document.getElementById("feature2Title").textContent = "Simple interface";
+      document.getElementById("feature2Text").textContent = "The tool is designed to work easily on phones and computers with dark and light mode support.";
+      document.getElementById("feature3Title").textContent = "Two languages";
+      document.getElementById("feature3Text").textContent = "You can use the website in Arabic or English using the language button at the top.";
+      document.getElementById("feature4Title").textContent = "Fast use";
+      document.getElementById("feature4Text").textContent = "Choose your birth date, select the calculations you want, and press calculate.";
 
-        document.getElementById("articlesHubTitle").innerText = "Articles Library";
-        document.getElementById("articlesHubText").innerText = "Browse useful articles about age calculation, the difference between Gregorian and Hijri age, and accurate calculation methods.";
-        document.getElementById("articlesHubCard1Title").innerText = "15 useful articles";
-        document.getElementById("articlesHubCard1Text").innerText = "A collection of SEO-friendly articles to strengthen the site's visibility and provide more value to visitors.";
-        document.getElementById("articlesHubCard2Title").innerText = "Main articles page";
-        document.getElementById("articlesHubCard2Text").innerText = "You can open the articles page and read all new topics from one place.";
-        document.getElementById("articlesHubLink").innerText = "Open articles page";
+      document.getElementById("guideTitle").textContent = "How to use the website";
+      document.getElementById("step1").innerHTML = "<strong>1.</strong> Choose your birth date from the picker.";
+      document.getElementById("step2").innerHTML = "<strong>2.</strong> Enable or disable the calculation types you want.";
+      document.getElementById("step3").innerHTML = "<strong>3.</strong> Press calculate to go to the result page.";
+      document.getElementById("step4").innerHTML = "<strong>4.</strong> Review the shown results.";
 
-        document.getElementById("faqTitle").innerText = "Frequently asked questions";
-        document.getElementById("faq1q").innerText = "Is the tool free?";
-        document.getElementById("faq1a").innerText = "Yes, the tool is completely free and works directly in the browser.";
-        document.getElementById("faq2q").innerText = "Do I need an account?";
-        document.getElementById("faq2a").innerText = "No, you do not need to create an account to use the age calculator.";
-        document.getElementById("faq3q").innerText = "Are the results accurate?";
-        document.getElementById("faq3a").innerText = "The main results depend on the birth date you enter, while some additional statistics are approximate.";
-        document.getElementById("faq4q").innerText = "Does the website support phones?";
-        document.getElementById("faq4a").innerText = "Yes, the website is designed to work well on phones, tablets, and computers.";
+      document.getElementById("faqTitle").textContent = "Frequently asked questions";
+      document.getElementById("faq1q").textContent = "Is the tool free?";
+      document.getElementById("faq1a").textContent = "Yes, the tool is free and works directly in the browser.";
+      document.getElementById("faq2q").textContent = "Do I need an account?";
+      document.getElementById("faq2a").textContent = "No, you do not need an account.";
+      document.getElementById("faq3q").textContent = "Are the results accurate?";
+      document.getElementById("faq3a").textContent = "Main results depend on the birth date you enter, while some extra stats are approximate.";
+      document.getElementById("faq4q").textContent = "Does it support phones?";
+      document.getElementById("faq4a").textContent = "Yes, it works on phones, tablets, and computers.";
 
-        document.getElementById("aboutPageLink").innerText = "About";
-        document.getElementById("contactPageLink").innerText = "Contact";
-        document.getElementById("privacyPageLink").innerText = "Privacy";
-        document.getElementById("termsPageLink").innerText = "Terms";
-        document.getElementById("articlesPageLink").innerText = "Articles";
+      document.getElementById("aboutPageLink").textContent = "About";
+      document.getElementById("contactPageLink").textContent = "Contact";
+      document.getElementById("privacyPageLink").textContent = "Privacy";
+      document.getElementById("termsPageLink").textContent = "Terms";
+      document.getElementById("articlesPageLink").textContent = "Articles";
 
-        document.getElementById("sheetTitle").innerText = "Choose Birth Date";
-        document.getElementById("dayLabel").innerText = "Day";
-        document.getElementById("monthLabel").innerText = "Month";
-        document.getElementById("yearLabel").innerText = "Year";
-        document.getElementById("confirmBtn").innerText = "Confirm";
-        document.getElementById("cancelBtn").innerText = "Cancel";
+      document.getElementById("aboutLink").textContent = "About";
+      document.getElementById("contactLink").textContent = "Contact";
+      document.getElementById("privacyLink").textContent = "Privacy";
+      document.getElementById("termsLink").textContent = "Terms";
+      document.getElementById("articlesFooterLink").textContent = "Articles";
+      document.getElementById("footerNote").textContent = "This website provides a free age calculator and related estimated statistics.";
 
-        document.getElementById("aboutLink").innerText = "About";
-        document.getElementById("contactLink").innerText = "Contact";
-        document.getElementById("privacyLink").innerText = "Privacy";
-        document.getElementById("termsLink").innerText = "Terms";
-        document.getElementById("articlesFooterLink").innerText = "Articles";
-        document.getElementById("footerNote").innerText = "This website provides a free tool to calculate age and related statistics in a simple and fast way. By using the website, you agree to the legal pages linked above.";
+      document.getElementById("sheetTitle").textContent = "Choose Birth Date";
+      document.getElementById("dayLabel").textContent = "Day";
+      document.getElementById("monthLabel").textContent = "Month";
+      document.getElementById("yearLabel").textContent = "Year";
+      document.getElementById("confirmBtn").textContent = "Confirm";
+      document.getElementById("cancelBtn").textContent = "Cancel";
+
+      updateBirthButtonText();
+    }
+
+    function applyArabicTexts() {
+      document.documentElement.lang = "ar";
+      document.documentElement.dir = "rtl";
+      document.title = "حساب العمر | احسب عمرك الميلادي والهجري وساعات حياتك";
+
+      document.getElementById("heroBadge").textContent = "أداة مجانية وسريعة لحساب العمر";
+      document.getElementById("mainTitle").textContent = "حساب العمر";
+      document.getElementById("heroText").textContent = "احسب عمرك بدقة بطريقة سهلة وسريعة، وتعرّف على عمرك الميلادي والهجري وعدد الساعات التي عشتها وبعض الإحصائيات المفيدة الأخرى من خلال واجهة بسيطة تدعم العربية والإنجليزية.";
+      document.getElementById("quickCalc").textContent = "ابدأ الحساب";
+      document.getElementById("quickHow").textContent = "طريقة الاستخدام";
+      document.getElementById("quickArticles").textContent = "المقالات";
+      document.getElementById("quickFaq").textContent = "الأسئلة الشائعة";
+
+      document.getElementById("mainDesc").textContent = "اختر تاريخ ميلادك ثم فعّل الحسابات التي تريدها، وبعدها اضغط على احسب.";
+      document.getElementById("optionsMainTitle").textContent = "اختر ما تريد حسابه";
+      document.getElementById("labelAge").textContent = "العمر الميلادي";
+      document.getElementById("labelHijri").textContent = "العمر الهجري";
+      document.getElementById("labelWater").textContent = "كمية الماء";
+      document.getElementById("labelSleep").textContent = "ساعات النوم";
+      document.getElementById("labelMeals").textContent = "عدد الوجبات";
+      document.getElementById("labelRamadan").textContent = "عدد رمضاناتك";
+      document.getElementById("labelPrayers").textContent = "عدد الصلوات";
+      document.getElementById("labelHours").textContent = "كم ساعة عشت";
+      document.getElementById("labelHeartbeat").textContent = "نبضات القلب";
+      document.getElementById("calcBtn").textContent = "احسب";
+
+      document.getElementById("howTitle").textContent = "ما هي أداة حساب العمر؟";
+      document.getElementById("howText1").textContent = "أداة حساب العمر هي خدمة مجانية عبر المتصفح تساعدك على معرفة عمرك الحالي اعتماداً على تاريخ الميلاد.";
+      document.getElementById("howText2").textContent = "الموقع مناسب لمن يريد حساب العمر الميلادي والهجري بسرعة ومعرفة بعض الإحصائيات اليومية التقريبية بشكل واضح.";
+      document.getElementById("feature1Title").textContent = "حسابات متنوعة";
+      document.getElementById("feature1Text").textContent = "يمكنك اختيار النتائج التي تريدها فقط، مثل العمر الميلادي والهجري وساعات حياتك.";
+      document.getElementById("feature2Title").textContent = "واجهة بسيطة";
+      document.getElementById("feature2Text").textContent = "تم تصميم الأداة لتعمل بسهولة على الهاتف والكمبيوتر مع دعم الوضع الليلي والنهاري.";
+      document.getElementById("feature3Title").textContent = "دعم لغتين";
+      document.getElementById("feature3Text").textContent = "يمكنك استخدام الموقع بالعربية أو الإنجليزية بسهولة من زر تغيير اللغة في أعلى الصفحة.";
+      document.getElementById("feature4Title").textContent = "استخدام سريع";
+      document.getElementById("feature4Text").textContent = "اختر تاريخ الميلاد وحدد الحسابات المطلوبة ثم اضغط على زر احسب.";
+
+      document.getElementById("guideTitle").textContent = "طريقة استخدام الموقع";
+      document.getElementById("step1").innerHTML = "<strong>1.</strong> اختر تاريخ الميلاد من النافذة المخصصة.";
+      document.getElementById("step2").innerHTML = "<strong>2.</strong> فعّل أو عطّل أنواع الحسابات التي تريد ظهورها في النتيجة.";
+      document.getElementById("step3").innerHTML = "<strong>3.</strong> اضغط على زر احسب للانتقال إلى صفحة النتائج.";
+      document.getElementById("step4").innerHTML = "<strong>4.</strong> راجع النتائج الظاهرة مثل العمر الميلادي والهجري وعدد الساعات والإحصائيات الأخرى.";
+
+      document.getElementById("faqTitle").textContent = "الأسئلة الشائعة";
+      document.getElementById("faq1q").textContent = "هل الأداة مجانية؟";
+      document.getElementById("faq1a").textContent = "نعم، الأداة مجانية ويمكن استخدامها مباشرة من المتصفح بدون تسجيل.";
+      document.getElementById("faq2q").textContent = "هل أحتاج إلى إنشاء حساب؟";
+      document.getElementById("faq2a").textContent = "لا، لا تحتاج إلى إنشاء حساب حتى تستخدم أداة حساب العمر.";
+      document.getElementById("faq3q").textContent = "هل النتائج دقيقة؟";
+      document.getElementById("faq3a").textContent = "النتائج الأساسية تعتمد على تاريخ الميلاد الذي تدخله، أما بعض الإحصائيات الأخرى فهي تقريبية.";
+      document.getElementById("faq4q").textContent = "هل الموقع يدعم الهاتف؟";
+      document.getElementById("faq4a").textContent = "نعم، تم تصميم الموقع ليعمل بشكل مناسب على الهواتف والأجهزة اللوحية وأجهزة الكمبيوتر.";
+
+      document.getElementById("aboutPageLink").textContent = "من نحن";
+      document.getElementById("contactPageLink").textContent = "اتصل بنا";
+      document.getElementById("privacyPageLink").textContent = "سياسة الخصوصية";
+      document.getElementById("termsPageLink").textContent = "شروط الاستخدام";
+      document.getElementById("articlesPageLink").textContent = "المقالات";
+
+      document.getElementById("aboutLink").textContent = "من نحن";
+      document.getElementById("contactLink").textContent = "اتصل بنا";
+      document.getElementById("privacyLink").textContent = "سياسة الخصوصية";
+      document.getElementById("termsLink").textContent = "شروط الاستخدام";
+      document.getElementById("articlesFooterLink").textContent = "المقالات";
+      document.getElementById("footerNote").textContent = "هذا الموقع يوفر أداة مجانية لحساب العمر وبعض الإحصائيات المرتبطة به بطريقة سهلة وسريعة.";
+
+      document.getElementById("sheetTitle").textContent = "اختر الميلاد";
+      document.getElementById("dayLabel").textContent = "اليوم";
+      document.getElementById("monthLabel").textContent = "الشهر";
+      document.getElementById("yearLabel").textContent = "السنة";
+      document.getElementById("confirmBtn").textContent = "تأكيد";
+      document.getElementById("cancelBtn").textContent = "إلغاء";
+
+      updateBirthButtonText();
+    }
+
+    function toggleLanguage() {
+      currentLang = currentLang === "ar" ? "en" : "ar";
+      if (currentLang === "en") {
+        applyEnglishTexts();
       } else {
-        currentLang = "ar";
-        document.documentElement.lang = "ar";
-        document.documentElement.dir = "rtl";
+        applyArabicTexts();
+      }
+      saveState();
+    }
 
-        document.title = "حساب العمر | احسب عمرك الميلادي والهجري وساعات حياتك";
-        document.getElementById("heroBadge").innerText = "أداة مجانية وسريعة لحساب العمر";
-        document.getElementById("mainTitle").innerText = "حساب العمر";
-        document.getElementById("heroText").innerText = "احسب عمرك بدقة بطريقة سهلة وسريعة، وتعرّف على عمرك الميلادي والهجري وعدد الساعات التي عشتها وبعض الإحصائيات المفيدة الأخرى من خلال واجهة بسيطة تدعم العربية والإنجليزية.";
-        document.getElementById("quickCalc").innerText = "ابدأ الحساب";
-        document.getElementById("quickHow").innerText = "طريقة الاستخدام";
-        document.getElementById("quickArticles").innerText = "المقالات";
-        document.getElementById("quickFaq").innerText = "الأسئلة الشائعة";
+    document.getElementById("langToggleBtn").addEventListener("click", toggleLanguage);
+    document.getElementById("themeToggleBtn").addEventListener("click", toggleTheme);
+    document.getElementById("birthButton").addEventListener("click", openBirthSheet);
+    document.getElementById("closeSheetBtn").addEventListener("click", closeBirthSheet);
+    document.getElementById("cancelBtn").addEventListener("click", closeBirthSheet);
+    document.getElementById("okTopBtn").addEventListener("click", confirmBirthDate);
+    document.getElementById("confirmBtn").addEventListener("click", confirmBirthDate);
+    document.getElementById("calcBtn").addEventListener("click", calculateAge);
 
-        document.getElementById("mainDesc").innerText = "اختر تاريخ ميلادك ثم فعّل الحسابات التي تريدها، وبعدها اضغط على احسب.";
-        document.getElementById("birthButton").innerText = selectedDay ? `${selectedYear}/${selectedMonth}/${selectedDay}` : "اختر تاريخ الميلاد";
-        document.getElementById("optionsMainTitle").innerText = "اختر ما تريد حسابه";
-        document.getElementById("labelAge").innerText = "العمر الميلادي";
-        document.getElementById("labelHijri").innerText = "العمر الهجري";
-        document.getElementById("labelWater").innerText = "كمية الماء";
-        document.getElementById("labelSleep").innerText = "ساعات النوم";
-        document.getElementById("labelMeals").innerText = "عدد الوجبات";
-        document.getElementById("labelRamadan").innerText = "عدد رمضاناتك";
-        document.getElementById("labelPrayers").innerText = "عدد الصلوات";
-        document.getElementById("labelHours").innerText = "كم ساعة عشت";
-        document.getElementById("labelHeartbeat").innerText = "نبضات القلب";
-        document.getElementById("calcBtn").innerText = "احسب";
+    document.getElementById("ageBtn").addEventListener("click", () => toggleOption("age"));
+    document.getElementById("hijriBtn").addEventListener("click", () => toggleOption("hijri"));
+    document.getElementById("waterBtn").addEventListener("click", () => toggleOption("water"));
+    document.getElementById("sleepBtn").addEventListener("click", () => toggleOption("sleep"));
+    document.getElementById("mealsBtn").addEventListener("click", () => toggleOption("meals"));
+    document.getElementById("ramadanBtn").addEventListener("click", () => toggleOption("ramadan"));
+    document.getElementById("prayersBtn").addEventListener("click", () => toggleOption("prayers"));
+    document.getElementById("hoursBtn").addEventListener("click", () => toggleOption("hours"));
+    document.getElementById("heartbeatBtn").addEventListener("click", () => toggleOption("heartbeat"));
 
-        document.getElementById("howTitle").innerText = "ما هي أداة حساب العمر؟";
-        document.getElementById("howText1").innerText = "أداة حساب العمر هي خدمة مجانية عبر المتصفح تساعدك على معرفة عمرك الحالي اعتماداً على تاريخ الميلاد. لا تحتاج إلى تنزيل تطبيق أو إنشاء حساب، فقط أدخل التاريخ واختر نوع النتائج التي تريدها.";
-        document.getElementById("howText2").innerText = "الموقع مناسب لمن يريد حساب العمر الميلادي والهجري بسرعة، ومعرفة عدد الساعات التي عاشها، وعدد رمضاناته، وبعض الإحصائيات اليومية التقريبية بشكل واضح وسهل.";
-        document.getElementById("feature1Title").innerText = "حسابات متنوعة";
-        document.getElementById("feature1Text").innerText = "يمكنك اختيار النتائج التي تريدها فقط، مثل العمر الميلادي والهجري وساعات حياتك والصلوات وعدد رمضاناتك.";
-        document.getElementById("feature2Title").innerText = "واجهة بسيطة";
-        document.getElementById("feature2Text").innerText = "تم تصميم الأداة لتعمل بسهولة على الهاتف والكمبيوتر مع دعم الوضع الليلي والنهاري.";
-        document.getElementById("feature3Title").innerText = "دعم لغتين";
-        document.getElementById("feature3Text").innerText = "يمكنك استخدام الموقع بالعربية أو الإنجليزية بسهولة من زر تغيير اللغة في أعلى الصفحة.";
-        document.getElementById("feature4Title").innerText = "استخدام سريع";
-        document.getElementById("feature4Text").innerText = "لا تحتاج إلى خطوات معقدة. اختر تاريخ الميلاد وحدد الحسابات المطلوبة ثم اضغط على زر احسب.";
-
-        document.getElementById("guideTitle").innerText = "طريقة استخدام الموقع";
-        document.getElementById("step1").innerHTML = "<strong>1.</strong> اختر تاريخ الميلاد من النافذة المخصصة.";
-        document.getElementById("step2").innerHTML = "<strong>2.</strong> فعّل أو عطّل أنواع الحسابات التي تريد ظهورها في النتيجة.";
-        document.getElementById("step3").innerHTML = "<strong>3.</strong> اضغط على زر احسب للانتقال إلى صفحة النتائج.";
-        document.getElementById("step4").innerHTML = "<strong>4.</strong> راجع النتائج الظاهرة مثل العمر الميلادي والهجري وعدد الساعات والإحصائيات الأخرى.";
-
-        document.getElementById("article1Title").innerText = "لماذا قد تحتاج لحساب العمر؟";
-        document.getElementById("article1Text").innerText = "حساب العمر مفيد في المناسبات الشخصية، والتخطيط الدراسي، ومعرفة الفروقات بين التاريخ الميلادي والهجري، ومتابعة العمر الزمني بشكل سريع.";
-        document.getElementById("article2Title").innerText = "العمر الميلادي والعمر الهجري";
-        document.getElementById("article2Text").innerText = "بعض المستخدمين يفضلون معرفة أعمارهم بالتقويم الميلادي، بينما يهتم آخرون بالتقويم الهجري، لذلك تم توفير الخيارين داخل الموقع.";
-        document.getElementById("article3Title").innerText = "إحصائيات تقريبية مفيدة";
-        document.getElementById("article3Text").innerText = "يعرض الموقع بعض القيم التقديرية مثل ساعات النوم وكمية الماء وعدد الوجبات والصلوات، وذلك لتقديم تجربة ممتعة وغنية بالمعلومات.";
-        document.getElementById("article4Title").innerText = "موقع خفيف وسهل";
-        document.getElementById("article4Text").innerText = "تم تطوير الموقع ليكون خفيفاً وسريع التحميل حتى يعمل بشكل جيد على الأجهزة المختلفة وخصوصاً الهواتف المحمولة.";
-
-        document.getElementById("articlesInfoTitle").innerText = "مقالات و
+    loadState();
+  </script>
+</body>
+</html>
